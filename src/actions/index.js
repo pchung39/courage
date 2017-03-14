@@ -1,12 +1,5 @@
 import axios from 'axios';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from '../reducers/index';
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-);
 
 export const CREATE_ENTRY = 'CREATE_ENTRY';
 export const FETCH_ENTRIES = 'FETCH_ENTRIES';
@@ -50,7 +43,14 @@ export function deleteEntry(id) {
     payload: request
   };
 }
-
+/*
+export function longestStreak() {
+  return {
+    type: FETCH_LONGEST,
+    payload: { streak: 10 }
+  };
+}
+*/
 
 // action creator for returning the longest streak of rejections
 export function longestStreak() {

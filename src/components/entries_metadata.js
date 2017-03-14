@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { longestStreak } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 
 class EntriesMetadata extends Component {
   componentWillMount() {
-    this.props.longestStreak();
+    console.log("Longest Streak Fired");
+    this.props.fetchLongest();
   }
 
   render() {
     return (
         <div>
+          <h1>{this.props.streak.streak}</h1>
       </div>
     );
     }
   }
 
 function mapStateToProps(state) {
-  return { streak: state.streak.streakInfo };
+  return state;
 }
 
-export default connect(mapStateToProps, { longestStreak })(EntriesMetadata);
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    fetchLongest: () => {dispatch(longestStreak())}
+  });
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EntriesMetadata);
