@@ -1,24 +1,40 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEntries } from '../actions/index';
 import EntriesList from '../components/entries';
 
 
-const getEntries = (state = [], action) => {
-  switch(action.type) {
-    case 'FETCH_ENTRIES':
-      return Object.assign({}, state, {
-        entries: action.entries
-      });
+class VisibleEntries extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    this.props.fetchEntries();
+  }
+
+  render() {
+    return (
+      <div>
+        <p>{this.props.entries[0].ask}</p>
+      </div>
+    );
   }
 }
 
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
-    entries: state.entries
-  }
+    entries: state.entries.entries
+  };
 }
 
-const VisibleEntries = connect(mapStateToProps, null)(EntriesList);
+/*
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    getEntries: () => {dispatch(fetchEntries())}
+  });
+}
+*/
 
-export default VisibleEntries;
+export default connect(mapStateToProps, { fetchEntries })(VisibleEntries);

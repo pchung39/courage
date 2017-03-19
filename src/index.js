@@ -9,11 +9,7 @@ import rootReducer from './reducers/index';
 
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/app';
-import EntriesIndex from './components/entries_index';
-import NewEntry from './components/new_entry';
-import Login from './components/facebook_login';
-import EntriesMetadata from './components/entries_metadata';
-import LandingPage from './components/landing_page';
+
 
 const logger = createLogger();
 const middlewares = [thunk, promise, logger];
@@ -23,8 +19,7 @@ const store = createStore(rootReducer, applyMiddleware(...middlewares));
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={LandingPage} />
-      <Route path='/me' component={App} />
+      <Route path='/' component={App} />
     </Router>
   </Provider>
   , document.querySelector('.container'));

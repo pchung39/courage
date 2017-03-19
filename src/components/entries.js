@@ -1,25 +1,27 @@
 import React, { PropTypes } from 'react';
-import Entry from './Entry';
+import Entry from './entry';
 
-const EntriesList = ({ Entries }) => (
+const EntriesList = ({ entries }) => (
   <div className='col-xs-6'>
     <ul className='list-group'>
-      {Entries.map(entry =>
+      {entries.map(entry =>
         <Entry
           key={entry._id}
-          {entry.ask}
-          {entry.askee}
+          {...entry}
           />
         )}
     </ul>
   </div>
 )
 
+/*
+
 EntriesList.propTypes = {
-  Entries: PropTypes.arrayof(PropTypes.shape({
-    ask = PropTypes.string.isRequired,
-    askee = PropTypes.string.isRequired
+  Entries: PropTypes.arrayOf(PropTypes.shape({
+    ask: PropTypes.string.isRequired,
+    askee: PropTypes.string.isRequired
   }).isRequired).isRequired
 }
+*/
 
 export default EntriesList
