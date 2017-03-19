@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEntries } from '../actions/index';
+import { fetchEntries, fetchUserInfo } from '../actions/index';
 import { Link } from 'react-router';
 
 class EntriesIndex extends Component {
   componentWillMount() {
-    this.props.fetchEntries();
+    //this.props.fetchEntries();
+    this.props.fetchUserInfo();
+    console.log(this.props.users.userinfo);
   }
 
   renderApprovedEntries() {
@@ -85,7 +87,14 @@ class EntriesIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { entries: state.entries.all };
+  return state
 }
 
-export default connect(mapStateToProps, { fetchEntries })(EntriesIndex);
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    fetchEntries: () => {dispatch(fetchEntries())},
+    fetchUserInfo: () => {dispatch(fetchUserInfo())}
+  });
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EntriesIndex);

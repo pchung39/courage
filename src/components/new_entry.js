@@ -13,6 +13,7 @@ class NewEntry extends Component {
   onSubmit(props) {
     console.log(props);
     this.props.createEntry(props);
+    this.context.router.push('/');
   }
 
   render () {
