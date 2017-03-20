@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import EntriesIndex from '../components/entries_index';
 import NewEntry from '../components/new_entry';
 import EntriesMetadata from '../components/entries_metadata';
+import ChartData from './chart';
+
 
 export default class App extends Component {
   render() {
@@ -9,6 +11,7 @@ export default class App extends Component {
       <div>
         <NewEntry />
         <EntriesMetadata />
+        <ChartData />
         <EntriesIndex />
       </div>
     );

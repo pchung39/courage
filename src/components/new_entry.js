@@ -1,8 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { createEntry } from '../actions/index';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
+injectTapEventPlugin();
 
 class NewEntry extends Component {
 
@@ -15,32 +20,44 @@ class NewEntry extends Component {
     this.props.createEntry(props);
   }
 
+  state = {
+    value: 1,
+  };
+
+  handleChange = (event, index, value) => this.setState({value});
+
   render () {
     const { fields: {askee, ask, status}, handleSubmit } = this.props;
+
     return (
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <h2>Add a New Entry</h2>
           <div className="row">
-          <div className="form-group col-md-6">
-              <label>Askee</label>
-              <input type="text" className="form-control" {...askee} />
-          </div>
+          <TextField
+            {...askee}
+            hintText="Who did you ask?"
+            floatingLabelText="Askee"
+          />
         </div>
           <div className="row">
-          <div className="form-group col-md-6">
-              <label>Ask</label>
-              <textarea className="form-control" {...ask} rows="3"></textarea>
-          </div>
+          <TextField
+            {...ask}
+            hintText="What did you ask?"
+            floatingLabelText="Ask"
+            multiLine={true}
+            rows={2}
+          />
         </div>
+          <div className="row">
+          <SelectField
+            {...status}
+            floatingLabelText="Outcome"
+            value={this.state.value}
+            onChange={this.handleChange}>
 
-          <div className="row">
-          <div className="form-group col-md-3">
-            <label>Outcome</label>
-            <select className="form-control" {...status}>
-              <option>Accepted</option>
-              <option>Rejected</option>
-            </select>
-          </div>
+            <MenuItem value={1} primaryText="Accepted" />
+            <MenuItem value={2} primaryText="Rejected" />
+          </SelectField>
           </div>
 
           <button type="submit" className="btn btn-primary">Submit</button>

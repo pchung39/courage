@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { longestStreak } from '../actions/index';
-import { bindActionCreators } from 'redux';
 
 
 class EntriesMetadata extends Component {

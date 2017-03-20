@@ -6,11 +6,7 @@ import NewEntry from './components/new_entry';
 
 
 export default(
-  <Route path='/' component={App}>
-    <IndexRoute component={NewEntry} />
-    <IndexRoute component={EntriesIndex} />
-  </Route>
-
-)
+  <Route path='/' component={App} />
+);
 
 // ":id" is replaced by this.props.params.id

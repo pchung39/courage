@@ -10,6 +10,7 @@ import promise from 'redux-promise';
 import App from './components/app';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers/index';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const logger = createLogger();
 const middlewares = [thunk, promise, logger];
@@ -20,6 +21,8 @@ const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 ReactDOM.render(
   <Provider store={store}>
+  <MuiThemeProvider>
     <App />
+    </MuiThemeProvider>
   </Provider>
   , document.querySelector('.container'));
