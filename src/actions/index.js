@@ -6,8 +6,66 @@ export const FETCH_ENTRIES = 'FETCH_ENTRIES';
 export const FETCH_ENTRY = 'FETCH_ENTRY';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const FETCH_LONGEST = 'FETCH_LONGEST';
+export const FETCH_TOTAL_POINTS = 'FETCH_TOTAL_POINTS';
 
 const ROOT_URL = 'http://localhost:3000/entries';
+
+export function longestStreak() {
+  return (dispatch, getState) => {
+      return fetch(`${ROOT_URL}`)
+          .then((response) => response.json())
+          .then((response) => {
+              dispatch(findLongestStreak(response));
+              dispatch(calculateTotalPoints(response));
+          });
+      };
+};
+
+function findLongestStreak(entries) {
+  var longestStreakLength = 0;
+  var currentStreakLength = 0;
+  for (var pos = 0; pos <= entries.length - 1; pos++) {
+    if (pos == entries.length - 1) {
+      if (currentStreakLength > longestStreakLength) {
+        longestStreakLength = currentStreakLength;
+      };
+    }
+    else if (entries[pos].status == "Accepted") {
+      if (currentStreakLength > longestStreakLength) {
+        longestStreakLength = currentStreakLength;
+      };
+      currentStreakLength = 0;
+    }
+    else if (entries[pos].status == "Rejected") {
+      currentStreakLength++;
+      //console.log("Current streak length", currentStreakLength);
+      }
+    };
+
+  return {
+    type: FETCH_LONGEST,
+    payload: longestStreakLength
+  };
+}
+
+function calculateTotalPoints(entries){
+  var totalPoints = 0;
+
+  for (var pos = 0; pos <= entries.length - 1; pos++ ) {
+    if (entries[pos].status == "Rejected") {
+      totalPoints += 10;
+    }
+    else {
+      totalPoints += 1;
+    }
+  }
+
+  return {
+    type: FETCH_TOTAL_POINTS,
+    payload: totalPoints
+  };
+}
+
 
 export function fetchEntries() {
   const request = axios.get(`${ROOT_URL}`);
@@ -41,43 +99,5 @@ export function deleteEntry(id) {
   return {
     type: DELETE_ENTRY,
     payload: request
-  };
-}
-/*
-export function longestStreak() {
-  return {
-    type: FETCH_LONGEST,
-    payload: { streak: 10 }
-  };
-}
-*/
-
-// action creator for returning the longest streak of rejections
-export function longestStreak() {
-  return function(dispatch) {
-    return fetchEntries().then(
-      entries => dispatch(findLongestStreak(entries))
-    );
-  };
-}
-
-
-function findLongestStreak(entries) {
-  var longestStreakLength = 0;
-  var currentStreakLength = 0;
-  for (var pos = 0; pos <= entries.length; pos++) {
-    if (entries[pos].status == "Accepted") {
-      if (currentStreakLength > longestStreakLength) {
-        longestStreakLength = currentStreakLength;
-      };
-      currentStreakLength = 0;
-    }
-    else if (entries[pos].status == "Rejected") {
-      currentStreakLength++;
-      }
-    };
-  return {
-    type: FETCH_LONGEST,
-    payload: longestStreakLength
   };
 }

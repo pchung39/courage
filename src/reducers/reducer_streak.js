@@ -5,8 +5,8 @@ const INITIAL_STATE = { streak: 0 };
 export default function StreakReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
     case FETCH_LONGEST:
-      console.log("I am the action payload",action.payload.streak);
-      return { ...state, streak: action.payload.streak};
+      console.log("I am the action payload",action.payload);
+      return { ...state, streak: action.payload};
     default:
       return state;
   }

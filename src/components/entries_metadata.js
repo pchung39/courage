@@ -6,21 +6,24 @@ import { bindActionCreators } from 'redux';
 
 class EntriesMetadata extends Component {
   componentWillMount() {
-    console.log("Longest Streak Fired");
     this.props.fetchLongest();
   }
 
   render() {
     return (
         <div>
-          <h1>{this.props.streak.streak}</h1>
+          <h1>Longest Streak: {this.props.streak}</h1>
+          <h1>Total Points: {this.props.points}</h1>
       </div>
     );
     }
   }
 
 function mapStateToProps(state) {
-  return state;
+  return {
+    streak: state.streak.streak,
+    points: state.points.points
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {
