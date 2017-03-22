@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+//import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 import { connect } from 'react-redux';
 import { fetchEntries } from '../actions/index';
+import Trend from 'react-trend';
 
 class ChartData extends Component {
 
   componentWillMount() {
-    this.props.fetchEntries();
+    this.props.getEntries();
   }
+
 
   determineChartData() {
     var entries = this.props.entries;
@@ -21,24 +23,36 @@ class ChartData extends Component {
         chartList.push(1);
       }
     };
-
     return chartList;
   }
 
   render() {
     return (
-      <div className="well">
-        <h2> Courage Metrics </h2>
-        <Sparklines height={100} width={800} data={this.determineChartData()}>
-          <SparklinesLine color="#253e56" />
-        </Sparklines>
+      <div>
+      <Trend
+        smooth
+        autoDraw
+        autoDrawDuration={3000}
+        autoDrawEasing="ease-out"
+        data={this.determineChartData()}
+        gradient={['#00c6ff', '#F0F', '#FF0']}
+        radius={18.3}
+        strokeWidth={1.3}
+        strokeLinecap={'butt'}
+      />
       </div>
     );
   }
-}
+};
 
 function mapStateToProps(state) {
   return { entries: state.entries.all };
 }
 
-export default connect(mapStateToProps, { fetchEntries })(ChartData);
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    getEntries: () => {dispatch(fetchEntries())}
+  });
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChartData);

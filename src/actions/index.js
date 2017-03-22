@@ -25,21 +25,21 @@ function findLongestStreak(entries) {
   var longestStreakLength = 0;
   var currentStreakLength = 0;
   for (var pos = 0; pos <= entries.length - 1; pos++) {
-    if (pos == entries.length - 1) {
+    if (pos === entries.length - 1) {
       if (currentStreakLength > longestStreakLength) {
         longestStreakLength = currentStreakLength;
       };
     }
-    else if (entries[pos].status == "Accepted") {
+    else if (entries[pos].status === "Accepted") {
       if (currentStreakLength > longestStreakLength) {
         longestStreakLength = currentStreakLength;
       };
       currentStreakLength = 0;
     }
-    else if (entries[pos].status == "Rejected") {
+    else if (entries[pos].status === "Rejected") {
       currentStreakLength++;
       //console.log("Current streak length", currentStreakLength);
-      }
+    }
     };
 
   return {
@@ -52,7 +52,7 @@ function calculateTotalPoints(entries){
   var totalPoints = 0;
 
   for (var pos = 0; pos <= entries.length - 1; pos++ ) {
-    if (entries[pos].status == "Rejected") {
+    if (entries[pos].status === "Rejected") {
       totalPoints += 10;
     }
     else {
@@ -78,6 +78,7 @@ export function fetchEntries() {
 
 export function createEntry(props) {
   const request = axios.post(`${ROOT_URL}`, props);
+  console.log(props);
   return {
     type: CREATE_ENTRY,
     payload: request
@@ -94,7 +95,7 @@ export function fetchEntry(id) {
 }
 
 export function deleteEntry(id) {
-  const request = axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`);
+  const request = axios.delete(`${ROOT_URL}/posts/${id}`);
 
   return {
     type: DELETE_ENTRY,
