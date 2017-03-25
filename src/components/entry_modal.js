@@ -3,7 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import NewEntry from './new_entry';
-
+import store from '../index';
+import { Provider } from 'react-redux';
 
 const style = {
   height: 2000,
@@ -40,6 +41,7 @@ export default class DialogModal extends Component {
     ];
 
     return (
+
       <div>
         <RaisedButton label="Modal Dialog" onTouchTap={this.handleOpen} />
         <Dialog
@@ -51,6 +53,7 @@ export default class DialogModal extends Component {
           <NewEntry />
         </Dialog>
       </div>
+
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
+import ReactDOM from 'react-dom';
+import { reduxForm, Field } from 'redux-form';
 import { createEntry } from '../actions/index';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
@@ -7,8 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import RaisedButton from 'material-ui/RaisedButton';
 import Chip from 'material-ui/Chip';
-import Avatar from 'material-ui/Avatar';
-import {blue300, indigo900} from 'material-ui/styles/colors';
+
 
 injectTapEventPlugin();
 
@@ -21,7 +21,8 @@ class NewEntry extends Component {
     super(props)
 
     this.state = {
-      categories: []
+      categories: null,
+      outcome: null
     }
 
     this.styles = {
@@ -42,16 +43,13 @@ class NewEntry extends Component {
 
   onSubmit(props) {
     console.log(props);
-    this.props.dispatch(createEntry(props));
+    this.props.createEntry(props);
   }
 
-  state = {
-    value: 1,
-  };
 
-  appendCategory = (event, index, value) => {
-    var categoriesList = this.state.categories;
-    this.setState({ categories: [ ...categoriesList, {"id": ++this.state.categories.length, "value": {value}} ]});
+
+  handleCategory = (event, index, value) => {
+    this.setState({ categories: value });
   };
 
   handleRequestDelete = (key_id) => {
@@ -61,29 +59,22 @@ class NewEntry extends Component {
     this.setState({categories: [ ...categoriesList ]});
   }
 
-  renderChip(data) {
-    return (
-      <Chip
-        style={this.styles.chip}
-        key={data.id}
-        onRequestDelete={() => this.handleRequestDelete(data.id)} >
-        <Avatar size={32} color={blue300} backgroundColor={indigo900} >A</Avatar>
-        {data.value.value}
-      </Chip>
-    );
-  }
+  handleChange = (event, index, value) => this.setState({outcome: value });
 
   render () {
-    const { fields: {askee, ask, status }, handleSubmit } = this.props;
+    const { fields: {askee, ask, status, category }, handleSubmit } = this.props;
     return (
+        <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+
           <div className="askee">
-          <TextField
-            {...askee}
-            hintText="Who did you ask?"
-            floatingLabelText="Askee"
-            floatingLabelFixed={true} />
-        </div>
+            <TextField
+              {...askee}
+              hintText="Who did you ask?"
+              floatingLabelText="Askee"
+              floatingLabelFixed={true} />
+          </div>
+
 
           <div className="ask">
           <TextField
@@ -100,7 +91,7 @@ class NewEntry extends Component {
             {...status}
             floatingLabelText="Outcome"
             floatingLabelFixed={true}
-            value={this.state.value}
+            value={this.state.outcome}
             onChange={this.handleChange}>
             <MenuItem value="Accepted" primaryText="Accepted" />
             <MenuItem value="Rejected" primaryText="Rejected" />
@@ -109,11 +100,11 @@ class NewEntry extends Component {
 
           <div className="categories">
           <SelectField
-            {...status}
+            {...category}
             floatingLabelText="Choose Categories"
             floatingLabelFixed={true}
-            value={this.state.value}
-            onChange={this.appendCategory}>
+            value={this.state.categories}
+            onChange={this.handleCategory}>
             <MenuItem value="Romance" primaryText="Romance" />
             <MenuItem value="Family" primaryText="Family" />
             <MenuItem value="Friends" primaryText="Friends" />
@@ -122,17 +113,14 @@ class NewEntry extends Component {
           </div>
 
 
-          <div className="categories" style={this.styles.wrapper}>
-            {this.state.categories.map(this.renderChip, this)}
-          </div>
-
           <RaisedButton label="Submit" type="submit" primary={true} style={style} />
         </form>
+        </div>
     );
   }
 }
 
 export default reduxForm({
   form: 'PostsNewEntry',
-  fields: ['askee', 'ask', 'status'],
+  fields: ['askee', 'ask', 'status', 'category'],
 }, null, { createEntry })(NewEntry);
