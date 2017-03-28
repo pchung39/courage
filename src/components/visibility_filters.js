@@ -16,9 +16,11 @@ const VisibilityFilter = () => (
     <FilterLink filter="family">
       Family
     </FilterLink>
+    {", "}
     <FilterLink filter="friends">
       Friends
     </FilterLink>
+    {", "}
     <FilterLink filter="career">
       Career
     </FilterLink>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEntries, deleteEntry } from '../actions/index';
+import getVisibleEntries from '../containers/visible_entries';
 
 
 const style = {
@@ -20,7 +21,7 @@ class EntriesIndex extends Component {
   }
 
   deleteEntry(entry_id) {
-    console.log(entry_id);
+
     this.props.deleteEntry(entry_id);
   }
 
@@ -61,9 +62,19 @@ class EntriesIndex extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { entries: state.entries.all };
+const mapStateToProps = (state) => {
+  return {
+    filter: state.filter,
+    entries: getVisibleEntries(state.entries.all, state.filter)
+  }
 }
+
+/*
+function mapStateToProps(state) {
+  return {
+    entries: state.entries.all  };
+}
+*/
 
 const mapDispatchToProps = (dispatch) => {
   return ({

@@ -29,6 +29,15 @@ export const setVisibilityFilter = (filter) => {
   }
 };
 
+export function fetchEntry(id) {
+  const request = axios.get(`${ROOT_URL}/${id}`);
+
+  return {
+    type: FETCH_ENTRY,
+    payload: request
+  };
+}
+
 
 function findLongestStreak(entries) {
   var longestStreakLength = 0;
@@ -61,7 +70,7 @@ function calculateTotalPoints(entries){
   var totalPoints = 0;
 
   for (var pos = 0; pos <= entries.length - 1; pos++ ) {
-    if (entries[pos].status === "Rejected") {
+    if (entries[pos].outcome === "rejected") {
       totalPoints += 10;
     }
     else {
@@ -94,25 +103,6 @@ export function createEntry(props) {
   };
 }
 
-export function fetchEntry(id) {
-  const request = axios.get(`${ROOT_URL}/${id}`);
-
-  return {
-    type: FETCH_ENTRY,
-    payload: request
-  };
-}
-/*
-export function deleteEntry(id) {
-  console.log("Action Creator: ", id)
-  const request = axios.delete(`${ROOT_URL}/${id}`);
-
-  return {
-    type: DELETE_ENTRY,
-    payload: request
-  };
-}
-*/
 
 export function deleteEntry(id) {
   return (dispatch, getState) => {

@@ -61,7 +61,7 @@ class NewEntry extends Component {
     </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>
-        <button><Link to="/" className="btn btn-danger">Cancel</Link></button>
+        <button><Link to="/me" className="btn btn-danger">Cancel</Link></button>
       </form>
     );
   };
