@@ -7,6 +7,7 @@ export const FETCH_ENTRY = 'FETCH_ENTRY';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const FETCH_LONGEST = 'FETCH_LONGEST';
 export const FETCH_TOTAL_POINTS = 'FETCH_TOTAL_POINTS';
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
 const ROOT_URL = 'http://localhost:3000/entries';
 
@@ -21,6 +22,14 @@ export function longestStreak() {
       };
 };
 
+export const setVisibilityFilter = (filter) => {
+  return {
+    type: SET_VISIBILITY_FILTER,
+    filter
+  }
+};
+
+
 function findLongestStreak(entries) {
   var longestStreakLength = 0;
   var currentStreakLength = 0;
@@ -30,13 +39,13 @@ function findLongestStreak(entries) {
         longestStreakLength = currentStreakLength;
       };
     }
-    else if (entries[pos].status === "Accepted") {
+    else if (entries[pos].outcome === "accepted") {
       if (currentStreakLength > longestStreakLength) {
         longestStreakLength = currentStreakLength;
       };
       currentStreakLength = 0;
     }
-    else if (entries[pos].status === "Rejected") {
+    else if (entries[pos].outcome === "rejected") {
       currentStreakLength++;
       //console.log("Current streak length", currentStreakLength);
     }
@@ -93,12 +102,23 @@ export function fetchEntry(id) {
     payload: request
   };
 }
-
+/*
 export function deleteEntry(id) {
-  const request = axios.delete(`${ROOT_URL}/posts/${id}`);
+  console.log("Action Creator: ", id)
+  const request = axios.delete(`${ROOT_URL}/${id}`);
 
   return {
     type: DELETE_ENTRY,
     payload: request
   };
 }
+*/
+
+export function deleteEntry(id) {
+  return (dispatch, getState) => {
+      return axios.delete(`${ROOT_URL}/${id}`)
+          .then(() => {
+              dispatch(fetchEntries());
+          });
+      };
+};

@@ -8,8 +8,6 @@ import App from './components/app';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers/index';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import NewEntry from './components/new_entry';
-
 
 const logger = createLogger();
 const middlewares = [thunk, promise, logger];

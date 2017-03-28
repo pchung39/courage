@@ -1,126 +1,77 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import { reduxForm, Field } from 'redux-form';
-import { createEntry } from '../actions/index';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import RaisedButton from 'material-ui/RaisedButton';
-import Chip from 'material-ui/Chip';
-
-
-injectTapEventPlugin();
-
-const style = {
-  margin: 12,
-};
+import React, { Component, PropTypes } from "react";
+import { connect } from 'react-redux';
+import ReactDOM from "react-dom";
+import { bindActionCreators } from 'redux';
+import { reduxForm, Field, Form, reset } from "redux-form";
+import { createEntry } from "../actions/index";
+import { Link } from 'react-router-dom';
 
 class NewEntry extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      categories: null,
-      outcome: null
-    }
-
-    this.styles = {
-      chip: {
-        margin: 4,
-      },
-      wrapper: {
-        display: 'flex',
-        flexWrap: 'wrap',
-      },
-    };
-
-  };
-
-  static contextTypes = {
-    router: PropTypes.object
   };
 
   onSubmit(props) {
     console.log(props);
-    this.props.createEntry(props);
+    this.props.dispatch(createEntry(props));
   }
 
+  render() {
+    const { handleSubmit, reset } = this.props;
+    return(
+      <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
+        <h3>Create a New Post</h3>
 
+        <div>
+          <label><h3>Ask</h3></label>
+          <div>
+            <Field name="ask" component="input" type="text" placeholder="What did you ask?"/>
+          </div>
+        </div>
 
-  handleCategory = (event, index, value) => {
-    this.setState({ categories: value });
+        <div>
+          <label><h3>Askee</h3></label>
+          <div>
+            <Field name="askee" component="input" type="text" placeholder="Who did you ask?"/>
+          </div>
+        </div>
+
+        <div>
+        <label><h3>Outcome</h3></label>
+        <div>
+          <Field name="outcome" component="select">
+            <option></option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+          </Field>
+        </div>
+      </div>
+
+      <div>
+      <label><h3>Category</h3></label>
+      <div>
+        <Field name="category" component="select">
+          <option></option>
+          <option value="romance">Romance</option>
+          <option value="family">Family</option>
+          <option value="friends">Friends</option>
+          <option value="career">Career</option>
+        </Field>
+      </div>
+    </div>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
+        <button><Link to="/" className="btn btn-danger">Cancel</Link></button>
+      </form>
+    );
   };
 
-  handleRequestDelete = (key_id) => {
-    var categoriesList = this.state.categories;
-    const indexItem = categoriesList.indexOf(key_id);
-    categoriesList.splice(indexItem, 1);
-    this.setState({categories: [ ...categoriesList ]});
-  }
-
-  handleChange = (event, index, value) => this.setState({outcome: value });
-
-  render () {
-    const { fields: {askee, ask, status, category }, handleSubmit } = this.props;
-    return (
-        <div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-
-          <div className="askee">
-            <TextField
-              {...askee}
-              hintText="Who did you ask?"
-              floatingLabelText="Askee"
-              floatingLabelFixed={true} />
-          </div>
-
-
-          <div className="ask">
-          <TextField
-            {...ask}
-            hintText="What did you ask?"
-            floatingLabelText="Ask"
-            multiLine={true}
-            rows={1}
-            floatingLabelFixed={true} />
-        </div>
-
-          <div className="status">
-          <SelectField
-            {...status}
-            floatingLabelText="Outcome"
-            floatingLabelFixed={true}
-            value={this.state.outcome}
-            onChange={this.handleChange}>
-            <MenuItem value="Accepted" primaryText="Accepted" />
-            <MenuItem value="Rejected" primaryText="Rejected" />
-          </SelectField>
-          </div>
-
-          <div className="categories">
-          <SelectField
-            {...category}
-            floatingLabelText="Choose Categories"
-            floatingLabelFixed={true}
-            value={this.state.categories}
-            onChange={this.handleCategory}>
-            <MenuItem value="Romance" primaryText="Romance" />
-            <MenuItem value="Family" primaryText="Family" />
-            <MenuItem value="Friends" primaryText="Friends" />
-            <MenuItem value="Career" primaryText="Career" />
-          </SelectField>
-          </div>
-
-
-          <RaisedButton label="Submit" type="submit" primary={true} style={style} />
-        </form>
-        </div>
-    );
-  }
 }
 
-export default reduxForm({
-  form: 'PostsNewEntry',
-  fields: ['askee', 'ask', 'status', 'category'],
-}, null, { createEntry })(NewEntry);
+
+let EntryForm = reduxForm(
+  { form: "newEntryForm" }
+)(NewEntry);
+
+
+export default EntryForm;

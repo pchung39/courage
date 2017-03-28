@@ -1,0 +1,33 @@
+import { connect } from 'react-redux';
+import { setVisibilityFilter } from '../actions/index';
+import EntriesIndex from '../components/entries_index';
+
+const getVisibleEntries = (entries, filter) => {
+  console.log("Something");
+  switch (filter) {
+    case 'all':
+      return entries
+    case 'romance':
+      return entries.filter(e => e.category == "romance")
+    case 'family':
+      console.log("You reached me!");
+      return entries.filter(e => e.category == "family")
+    case 'friends':
+      return entries.filter(e => e.category == "friends")
+    case 'career':
+      return entries.filter(e => e.category == "career")
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    entries: getVisibleEntries(state.entries.all, state.visibilityFilter)
+  }
+}
+
+const VisibleEntriesList = connect(
+  mapStateToProps,
+  null
+)(EntriesIndex);
+
+export default VisibleEntriesList;

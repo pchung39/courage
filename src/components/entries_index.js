@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEntries } from '../actions/index';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { fetchEntries, deleteEntry } from '../actions/index';
+
 
 const style = {
   maxWidth: 600,
@@ -10,25 +9,29 @@ const style = {
 
 
 class EntriesIndex extends Component {
+
+  constructor(props) {
+    super(props)
+    this.props.deleteEntry.bind(this);
+  };
+
   componentWillMount() {
     this.props.fetchEntries();
   }
 
-  CardExampleExpandable = (entries) => (
-    <Card style={style}>
-      <CardHeader
-        title={entries.ask}
-        subtitle={entries.askee}
-        actAsExpander={true}
-        showExpandableButton={true}
-      />
-      <CardActions>
-        <FlatButton label="Delete" />
-      </CardActions>
-      <CardText expandable={true}>
-        This an ask. Ask some more!
-      </CardText>
-    </Card>
+  deleteEntry(entry_id) {
+    console.log(entry_id);
+    this.props.deleteEntry(entry_id);
+  }
+
+  entryCard = (entries) => (
+    <div className="cardContent">
+      <h3>{entries.ask}</h3>
+      <p>{entries.askee}</p>
+      <p>{entries._id}</p>
+      <p>{entries.category}</p>
+      <button onClick={() => {this.props.deleteEntry(entries._id)}}>Delete</button>
+    </div>
   );
 
   renderApprovedEntries() {
@@ -36,8 +39,8 @@ class EntriesIndex extends Component {
 
     return entries.map((post) => {
       return (
-        <li className="list-group-item approved-list" key={post._id}>
-          {this.CardExampleExpandable(post)}
+        <li className="singleCard" key={post._id}>
+          {this.entryCard(post)}
         </li>
       );
     });
@@ -47,9 +50,9 @@ class EntriesIndex extends Component {
   render() {
     return (
       <div>
-        <div className="entries_list">
+        <div className="cardContainer">
           <h3>Entries</h3>
-          <ul className="list-group">
+          <ul className="cardList">
             {this.renderApprovedEntries()}
           </ul>
       </div>
@@ -62,4 +65,11 @@ function mapStateToProps(state) {
   return { entries: state.entries.all };
 }
 
-export default connect(mapStateToProps, { fetchEntries })(EntriesIndex);
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    deleteEntry: (id) => {dispatch(deleteEntry(id))},
+    fetchEntries: () => {dispatch(fetchEntries())}
+  });
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EntriesIndex);
