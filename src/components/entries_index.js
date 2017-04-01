@@ -27,11 +27,12 @@ class EntriesIndex extends Component {
 
   entryCard = (entries) => (
     <div className="cardContent">
-      <h3>{entries.ask}</h3>
-      <p>{entries.askee}</p>
-      <p>{entries._id}</p>
-      <p>{entries.category}</p>
-      <button onClick={() => {this.props.deleteEntry(entries._id)}}>Delete</button>
+      <div className="deleteButton">
+        <button id="deleteEntry" onClick={() => {this.props.deleteEntry(entries._id)}}>X</button>
+      </div>
+      <h3 id="ask">{entries.ask}</h3>
+      <p id="askee">{entries.askee}</p>
+      <p id="category">{entries.category}</p>
     </div>
   );
 
@@ -50,9 +51,8 @@ class EntriesIndex extends Component {
 
   render() {
     return (
-      <div>
+      <div className="topContainer">
         <div className="cardContainer">
-          <h3>Entries</h3>
           <ul className="cardList">
             {this.renderApprovedEntries()}
           </ul>

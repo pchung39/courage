@@ -18,11 +18,13 @@ export default class App extends Component {
           </div>
         )} />
         <Route exact path="/me" render={() => (
-          <div>
+          <div className="mainContainer">
             <AppBarHeader />
-            <EntriesMetadata />
             <VisibilityFilter />
-            <EntriesIndex />
+            <div className="combinedData">
+              <EntriesMetadata />
+              <EntriesIndex />
+            </div>
           </div>
         )} />
         <Route exact path="/new" render={() => (

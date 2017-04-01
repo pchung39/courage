@@ -3,3 +3,145 @@
   margin: 0;
   padding: 0;
 }
+
+/* === LANDING PAGE === */
+
+.landingCanvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.landing {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background-color: red;
+  width: 40%;
+  height: 10%;
+}
+
+/* === MAIN PAGE === */
+
+.mainContainer {
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+}
+
+
+
+/* === HEADER BAR & LOGO === */
+
+
+.headerBar {
+  display: flex;
+  align-items: center;
+  background: red;
+}
+
+.head {
+  display: flex;
+  justify-content: flex-start;
+  margin: 30px;
+  font-size: 14px;
+}
+
+.titleLetter1, .titleLetter2, .titleLetter3, .titleLetter4,
+.titleLetter5, .titleLetter6, .titleLetter7 {
+  padding-right: 6px;
+  color: white;
+}
+
+/* === FILTERS === */
+
+.filtersMain {
+  display: flex;
+  justify-content: flex-start;
+  order: 0;
+  margin-left: 30px;
+  padding: 6px 0px;
+}
+
+/* === ENTRIES === */
+
+.singleCard {
+  display: flex;
+  background-color: white;
+  width: 300px;
+  height: 150px;
+  box-shadow: 0 1px 14px rgba(0,0,0,.1);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+.singleCard:hover {
+    box-shadow: 0 10px 50px rgba(0,0,0,.4);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  flex: 1;
+}
+
+
+.cardList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-top: 40px;
+  width: 100vw;
+
+}
+
+.topContainer {
+  display: flex;
+  background-color: #F1F1F1;
+  height: 100vh;
+}
+
+#ask {
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+#askee {
+  font-size: 10px;
+  color: grey;
+  margin-left: 20px;
+}
+
+#category {
+  font-size: 10px;
+  margin-left: 20px;
+  margin-top: 4px;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  max-width: 30px;
+  border-radius: 5px;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+#deleteEntry {
+  border-radius: 100%;
+  background-color: red;
+  padding: 6px 12px;
+  border: none;
+  color: white;
+}
+
+a {
+  margin-left: 10px;
+}
