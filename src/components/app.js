@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NewEntry from "../components/new_entry";
 import Landing from "../components/landing_page";
 import VisibilityFilter from "../components/visibility_filters";
+import SignUp from "./signup";
+import SignIn from "./signin";
 
 export default class App extends Component {
   render() {
@@ -17,6 +19,7 @@ export default class App extends Component {
             <Landing />
           </div>
         )} />
+
         <Route exact path="/me" render={() => (
           <div className="mainContainer">
             <AppBarHeader />
@@ -27,12 +30,28 @@ export default class App extends Component {
             </div>
           </div>
         )} />
+
         <Route exact path="/new" render={() => (
           <div>
             <AppBarHeader />
             <NewEntry />
           </div>
         )} />
+
+        <Route exact path="/signup" render={() => (
+          <div>
+            <AppBarHeader />
+            <SignUp />
+          </div>
+        )} />
+
+        <Route exact path="/signin" render={() => (
+          <div>
+            <AppBarHeader />
+            <SignIn />
+          </div>
+        )} />
+
         </div>
       </Router>
     );

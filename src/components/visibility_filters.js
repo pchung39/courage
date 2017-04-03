@@ -3,8 +3,7 @@ import FilterLink from '../containers/filter_link';
 
 const VisibilityFilter = () => (
   <p className="filtersMain">
-    Filters:
-
+  
     <FilterLink filter="all">
       All
     </FilterLink>
@@ -20,7 +19,7 @@ const VisibilityFilter = () => (
     <FilterLink filter="friends">
       Friends
     </FilterLink>
-    
+
     <FilterLink filter="career">
       Career
     </FilterLink>

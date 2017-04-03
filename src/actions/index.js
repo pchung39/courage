@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const CREATE_ENTRY = 'CREATE_ENTRY';
 export const FETCH_ENTRIES = 'FETCH_ENTRIES';
 export const FETCH_ENTRY = 'FETCH_ENTRY';
@@ -8,6 +7,8 @@ export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const FETCH_LONGEST = 'FETCH_LONGEST';
 export const FETCH_TOTAL_POINTS = 'FETCH_TOTAL_POINTS';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+export const CREATE_USER = 'CREATE USER';
+export const CHECK_USER = 'CHECK USER';
 
 const ROOT_URL = 'http://localhost:3000/entries';
 
@@ -99,6 +100,23 @@ export function createEntry(props) {
   console.log(props);
   return {
     type: CREATE_ENTRY,
+    payload: request
+  };
+}
+
+export function checkUser(props) {
+  const request = axios.post(`${ROOT_URL}/checkuser`, props);
+  return {
+    type: CHECK_USER,
+    payload: request
+  };
+}
+
+export function createUser(props) {
+  const request = axios.post(`${ROOT_URL}/newuser`, props);
+  console.log(props);
+  return {
+    type: CREATE_USER,
     payload: request
   };
 }
