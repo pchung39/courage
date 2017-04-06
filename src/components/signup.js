@@ -28,7 +28,7 @@ class SignUp extends Component {
         <div>
           <label><h3>Username</h3></label>
           <div>
-            <Field name="username" component="input" type="text" />
+            <Field name="email" component="input" type="text" />
           </div>
         </div>
 

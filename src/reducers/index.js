@@ -4,7 +4,7 @@ import StreakReducer from './reducer_streak';
 import PointsReducer from './reducer_points';
 import { reducer as formReducer } from 'redux-form';
 import VisibilityFilter from './reducer_filters';
-import UserReducer from './reducer_users';
+import AuthReducer from "./reducer_auth";
 
 const rootReducer = combineReducers({
   entries: PostsReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   streak: StreakReducer,
   points: PointsReducer,
   filter: VisibilityFilter,
-  user: UserReducer
+  auth: AuthReducer
 });
 
 export default rootReducer;

@@ -1,4 +1,10 @@
 import axios from 'axios';
+import { browserHistory } from "react-router";
+import { AUTH_USER,
+        AUTH_ERROR,
+        UNAUTH_USER
+      } from "./types";
+
 
 export const CREATE_ENTRY = 'CREATE_ENTRY';
 export const FETCH_ENTRIES = 'FETCH_ENTRIES';
@@ -10,7 +16,8 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const CREATE_USER = 'CREATE USER';
 export const CHECK_USER = 'CHECK USER';
 
-const ROOT_URL = 'http://localhost:3000/entries';
+const ROOT_URL = 'http://localhost:3090/entries';
+const AUTH_ROOT_URL = "http://localhost:3090";
 
 export function longestStreak() {
   return (dispatch, getState) => {
@@ -104,23 +111,6 @@ export function createEntry(props) {
   };
 }
 
-export function checkUser(props) {
-  const request = axios.post(`${ROOT_URL}/checkuser`, props);
-  return {
-    type: CHECK_USER,
-    payload: request
-  };
-}
-
-export function createUser(props) {
-  const request = axios.post(`${ROOT_URL}/newuser`, props);
-  console.log(props);
-  return {
-    type: CREATE_USER,
-    payload: request
-  };
-}
-
 
 export function deleteEntry(id) {
   return (dispatch, getState) => {
@@ -130,3 +120,38 @@ export function deleteEntry(id) {
           });
       };
 };
+
+
+
+export function signinUser({ email, password }) {
+  return function(dispatch) {
+    // submit email/password to the server
+    axios.post(`${AUTH_ROOT_URL}/signin`, { email, password })
+      .then(response => {
+        
+          dispatch({ type: AUTH_USER })
+
+          localStorage.setItem("token", response.data.token);
+
+      })
+      .catch(() => {
+        // if request is bad
+        // show error to the user
+        dispatch(authError("Bad Login Info"));
+      });
+  }
+
+}
+
+
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
+  }
+}
+
+export function signoutUser() {
+  localStorage.removeItem("token");
+  return { type: UNAUTH_USER };
+}

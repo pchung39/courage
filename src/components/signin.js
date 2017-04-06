@@ -1,27 +1,41 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from 'react-redux';
 import { reduxForm, Field, Form, reset } from "redux-form";
-import { Link } from 'react-router-dom';
-import { checkUser } from "../actions/index";
+import { Link, Redirect } from 'react-router-dom';
+import * as actions from "../actions";
 
 
 class SignIn extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      errors: {}
-    }
+  }
 
-    }
 
-  onSubmit = (props) => {
-    // dispatch to find user, if success route to /me, else display error
-    this.props.dispatch(checkUser(props));
+  onSubmit = ({ email,password }) => {
+    this.props.signinUser({ email, password });
+  }
+
+
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="signin-alert">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      )
+    }
   }
 
   render() {
     const { handleSubmit, reset } = this.props;
+
+    if(this.props.authStatus == true) {
+          return (
+            <Redirect to="/me"/>
+          )
+        };
+
 
     return(
       <div>
@@ -29,9 +43,13 @@ class SignIn extends Component {
         <h3>Sign In!</h3>
 
         <div>
+        {this.renderAlert()}
+        </div>
+
+        <div>
           <label><h3>Username</h3></label>
           <div>
-            <Field name="username" component="input" type="text" />
+            <Field name="email" component="input" type="text" />
           </div>
         </div>
 
@@ -52,8 +70,16 @@ class SignIn extends Component {
 };
 
 
+SignIn.contextTypes = {
+  router: React.PropTypes.object
+}
+
 let signInForm = reduxForm(
   { form: "signInForm" })(SignIn);
 
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error,
+           authStatus: state.auth.authenticated }
+}
 
-export default signInForm;
+export default connect( mapStateToProps, actions )(signInForm);
