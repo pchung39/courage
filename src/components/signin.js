@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { reduxForm, Field, Form, reset } from "redux-form";
 import { Link, Redirect } from 'react-router-dom';
@@ -70,9 +70,6 @@ class SignIn extends Component {
 };
 
 
-SignIn.contextTypes = {
-  router: React.PropTypes.object
-}
 
 let signInForm = reduxForm(
   { form: "signInForm" })(SignIn);

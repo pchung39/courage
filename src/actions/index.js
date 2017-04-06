@@ -5,7 +5,6 @@ import { AUTH_USER,
         UNAUTH_USER
       } from "./types";
 
-
 export const CREATE_ENTRY = 'CREATE_ENTRY';
 export const FETCH_ENTRIES = 'FETCH_ENTRIES';
 export const FETCH_ENTRY = 'FETCH_ENTRY';
@@ -18,6 +17,7 @@ export const CHECK_USER = 'CHECK USER';
 
 const ROOT_URL = 'http://localhost:3090/entries';
 const AUTH_ROOT_URL = "http://localhost:3090";
+
 
 export function longestStreak() {
   return (dispatch, getState) => {
@@ -128,7 +128,7 @@ export function signinUser({ email, password }) {
     // submit email/password to the server
     axios.post(`${AUTH_ROOT_URL}/signin`, { email, password })
       .then(response => {
-        
+
           dispatch({ type: AUTH_USER })
 
           localStorage.setItem("token", response.data.token);
@@ -143,6 +143,25 @@ export function signinUser({ email, password }) {
 
 }
 
+export function signupUser({ email, password }) {
+  return function(dispatch) {
+    // submit email/password to the server
+    axios.post(`${AUTH_ROOT_URL}/signup`, { email, password })
+      .then(response => {
+
+          dispatch({ type: AUTH_USER })
+
+          localStorage.setItem("token", response.data.token);
+
+      })
+      .catch((response) => {
+        // if request is bad
+        // show error to the user
+        dispatch(authError(response.data.error));
+      });
+  }
+
+}
 
 export function authError(error) {
   return {
@@ -154,4 +173,14 @@ export function authError(error) {
 export function signoutUser() {
   localStorage.removeItem("token");
   return { type: UNAUTH_USER };
+}
+
+// using JWT token for authenticated calls
+export function fetchMessage() {
+  return function(dispatch) {
+    axios.get(`${AUTH_ROOT_URL}/entries/test`, {
+      headers: { authorization: localStorage.getItem("token") }
+    })
+    .then(response => console.log(response));
+  }
 }

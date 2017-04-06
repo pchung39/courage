@@ -8,11 +8,19 @@ import App from './components/app';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers/index';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { AUTH_USER } from "./actions/types";
 
 const logger = createLogger();
 const middlewares = [thunk, promise, logger];
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
+
+const token = localStorage.getItem("token");
+
+if (token) {
+
+  store.dispatch({ type: AUTH_USER })
+}
 
 ReactDOM.render(
   <Provider store={store}>

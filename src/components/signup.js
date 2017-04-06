@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import ReactDOM from "react-dom";
 import { reduxForm, Field, Form, reset } from "redux-form";
-import { Link } from 'react-router-dom';
-import { createUser } from "../actions/index";
+import { Link, Redirect } from 'react-router-dom';
+import * as actions from "../actions";
 
 
 class SignUp extends Component {
@@ -11,14 +11,18 @@ class SignUp extends Component {
     super(props)
   }
 
-  onSubmit = (props) => {
-    this.props.dispatch(createUser(props)).then(
-      console.log(this.state)
-    );
+  onSubmit = ({ email, password }) => {
+    this.props.signupUser({ email, password });
   }
 
   render() {
     const { handleSubmit, reset } = this.props;
+
+    if(this.props.authStatus == true) {
+          return (
+            <Redirect to="/me"/>
+          )
+        };
 
     return(
       <div>
@@ -48,9 +52,23 @@ class SignUp extends Component {
   }
 };
 
+function validate(formProps) {
+  const errors = {};
+  if (formProps.password !== formProps.passwordConfirm) {
+    errors.password = "Passwords must match";
+  }
+
+  return errors;
+}
+
 let signUpForm = reduxForm(
   { form: "signUpForm" }
 )(SignUp);
 
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error,
+           authStatus: state.auth.authenticated }
+}
 
-export default signUpForm;
+
+export default connect(mapStateToProps, actions)(signUpForm);
