@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { signoutUser } from "../actions/index";
 
 
 class AppBarHeader extends Component {
+  constructor(props) {
+    super(props)
+  };
+
+  signOut() {
+    console.log("User signed out");
+    this.props.signoutUser();
+  };
 
   render() {
     return (
@@ -20,7 +30,7 @@ class AppBarHeader extends Component {
           </div>
           <br />
           <div className="signout">
-            <i className="fa fa-sign-out" aria-hidden="true"></i>
+            <button onClick={ this.signOut.bind(this) } >Sign Out</button>
           </div>
         </header>
 
@@ -28,4 +38,4 @@ class AppBarHeader extends Component {
     }
   }
 
-export default AppBarHeader;
+export default connect(null, { signoutUser })(AppBarHeader);

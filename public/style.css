@@ -66,6 +66,18 @@
   background: red;
 }
 
+.metadataMain {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 30px;
+  flex-direction: row;
+  margin: 6px 0px;
+}
+
+.streakText {
+  margin-right: 25px;
+}
+
 /* === ENTRIES === */
 
 .singleCard {

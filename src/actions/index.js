@@ -21,7 +21,7 @@ const AUTH_ROOT_URL = "http://localhost:3090";
 
 export function longestStreak() {
   return (dispatch, getState) => {
-      return fetch(`${ROOT_URL}`)
+      return fetch(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } })
           .then((response) => response.json())
           .then((response) => {
               dispatch(findLongestStreak(response));
@@ -37,17 +37,9 @@ export const setVisibilityFilter = (filter) => {
   }
 };
 
-export function fetchEntry(id) {
-  const request = axios.get(`${ROOT_URL}/${id}`);
-
-  return {
-    type: FETCH_ENTRY,
-    payload: request
-  };
-}
-
 
 function findLongestStreak(entries) {
+  console.log("This is the response: ", entries);
   var longestStreakLength = 0;
   var currentStreakLength = 0;
   for (var pos = 0; pos <= entries.length - 1; pos++) {
@@ -64,8 +56,7 @@ function findLongestStreak(entries) {
     }
     else if (entries[pos].outcome === "rejected") {
       currentStreakLength++;
-      //console.log("Current streak length", currentStreakLength);
-    }
+      }
     };
 
   return {
@@ -76,7 +67,6 @@ function findLongestStreak(entries) {
 
 function calculateTotalPoints(entries){
   var totalPoints = 0;
-
   for (var pos = 0; pos <= entries.length - 1; pos++ ) {
     if (entries[pos].outcome === "rejected") {
       totalPoints += 10;
@@ -94,7 +84,10 @@ function calculateTotalPoints(entries){
 
 
 export function fetchEntries() {
-  const request = axios.get(`${ROOT_URL}`);
+  const request = axios.get(`${ROOT_URL}`,
+    {
+      headers: { authorization: localStorage.getItem("token") }
+    });
   return {
     type: FETCH_ENTRIES,
     payload: request
@@ -103,7 +96,10 @@ export function fetchEntries() {
 
 
 export function createEntry(props) {
-  const request = axios.post(`${ROOT_URL}`, props);
+  const request = axios.post(`${ROOT_URL}`, props,
+    {
+      headers: { authorization: localStorage.getItem("token") }
+    });
   console.log(props);
   return {
     type: CREATE_ENTRY,
@@ -114,7 +110,10 @@ export function createEntry(props) {
 
 export function deleteEntry(id) {
   return (dispatch, getState) => {
-      return axios.delete(`${ROOT_URL}/${id}`)
+      return axios.delete(`${ROOT_URL}/${id}`,
+        {
+          headers: { authorization: localStorage.getItem("token") }
+        })
           .then(() => {
               dispatch(fetchEntries());
           });

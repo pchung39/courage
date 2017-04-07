@@ -21,8 +21,13 @@ class EntriesIndex extends Component {
   }
 
   deleteEntry(entry_id) {
-
+    console.log(entry_id);
     this.props.deleteEntry(entry_id);
+  }
+
+  convertDate(timestamp) {
+    let date = new Date(timestamp);
+    return date.toDateString();
   }
 
   entryCard = (entries) => (
@@ -30,6 +35,7 @@ class EntriesIndex extends Component {
       <div className="deleteButton">
         <button id="deleteEntry" onClick={() => {this.props.deleteEntry(entries._id)}}>X</button>
       </div>
+      <p id="timestamp">{this.convertDate(entries.timestamp)}</p>
       <h3 id="ask">{entries.ask}</h3>
       <p id="askee">{entries.askee}</p>
       <p id="category">{entries.category}</p>

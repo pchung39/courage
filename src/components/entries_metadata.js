@@ -5,6 +5,7 @@ import { longestStreak } from '../actions/index';
 
 class EntriesMetadata extends Component {
   componentWillMount() {
+    console.log("About to fetch more metadata")
     this.props.fetchLongest();
   }
 
@@ -12,7 +13,7 @@ class EntriesMetadata extends Component {
     return (
         <div className="metadataMain">
           <h4 className="streakText">Longest Streak: {this.props.streak}</h4>
-          <h1 className="pointsText">Total Points: {this.props.points}</h1>
+          <h4 className="pointsText">Total Points: {this.props.points}</h4>
         </div>
     );
     }
