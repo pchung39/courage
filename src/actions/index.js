@@ -126,12 +126,40 @@ function sortList (users) {
 
 
 
+function quickSort(users) {
+  if (users.length <= 1) {
+    return users;
+  } else {
+
+      var left = [];
+      var right = [];
+      var newArray = [];
+      var pivot = users.pop();
+
+
+      for (var i = 0; i < users.length; i++) {
+          if (users[i].entries.length < pivot.entries.length) {
+              left.push(users[i]);
+          } else {
+              right.push(users[i]);
+          }
+      }
+
+      return newArray.concat(quickSort(left), pivot, quickSort(right));
+    }
+}
+
+
 export function fetchSortedUsers() {
   return (dispatch, getState) => {
       return fetch(`${USERS_ROOT_URL}`)
           .then((response) => response.json())
           .then((response) => {
-              dispatch(sortList(response));
+              var sortedList = quickSort(response);
+              dispatch({
+                type: FETCH_USERS,
+                payload: sortedList.reverse().slice(0,4)
+              });
           });
       };
 };
