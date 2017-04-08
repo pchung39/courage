@@ -9,6 +9,7 @@ import Landing from "../components/landing_page";
 import VisibilityFilter from "../components/visibility_filters";
 import SignUp from "./signup";
 import SignIn from "./signin";
+import Leaderboard from "./leaderboard";
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class App extends Component {
             <VisibilityFilter />
             <div className="combinedData">
               <EntriesMetadata />
+              <Leaderboard />
               <EntriesIndex />
             </div>
           </div>) :

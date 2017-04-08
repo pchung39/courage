@@ -12,11 +12,11 @@ export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const FETCH_LONGEST = 'FETCH_LONGEST';
 export const FETCH_TOTAL_POINTS = 'FETCH_TOTAL_POINTS';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
-export const CREATE_USER = 'CREATE USER';
-export const CHECK_USER = 'CHECK USER';
+export const FETCH_USERS = "FETCH_USERS";
 
 const ROOT_URL = 'http://localhost:3090/entries';
 const AUTH_ROOT_URL = "http://localhost:3090";
+const USERS_ROOT_URL = "http://localhost:3090/users";
 
 
 export function longestStreak() {
@@ -90,6 +90,14 @@ export function fetchEntries() {
     });
   return {
     type: FETCH_ENTRIES,
+    payload: request
+  };
+}
+
+export function fetchUsers() {
+  const request = axios.get(`${USERS_ROOT_URL}`);
+  return {
+    type: FETCH_USERS,
     payload: request
   };
 }
