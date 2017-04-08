@@ -38,8 +38,9 @@ export const setVisibilityFilter = (filter) => {
 };
 
 
+
+
 function findLongestStreak(entries) {
-  console.log("This is the response: ", entries);
   var longestStreakLength = 0;
   var currentStreakLength = 0;
   for (var pos = 0; pos <= entries.length - 1; pos++) {
@@ -101,6 +102,39 @@ export function fetchUsers() {
     payload: request
   };
 }
+
+/*  THUNK FUNCTION: SORT USERS FOR LEADERBOARD */
+
+function sortList (users) {
+  //console.log("sorted list users: ", users);
+    for (var first = 0; first < users.length; first++) {
+      for (var second = 1; second < users.length; second++) {
+        if (users[second].entries.length < users[first].entries.length) {
+          var temp = users[second];
+          users[second] = users[first];
+          users[first] = temp;
+        }
+      };
+    };
+    console.log(users)
+    return {
+      type: FETCH_USERS,
+      payload: users
+    };
+
+}
+
+
+
+export function fetchSortedUsers() {
+  return (dispatch, getState) => {
+      return fetch(`${USERS_ROOT_URL}`)
+          .then((response) => response.json())
+          .then((response) => {
+              dispatch(sortList(response));
+          });
+      };
+};
 
 
 export function createEntry(props) {

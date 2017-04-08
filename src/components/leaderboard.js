@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../actions/index';
+import { fetchSortedUsers } from '../actions/index';
 
 
 class Leaderboard extends Component {
   constructor(props) {
-  super(props)
-    }
+    super(props)
+  }
 
   componentWillMount() {
-  this.props.fetchUsers();
+    this.props.fetchSortedUsers();
   }
 
   renderList() {
@@ -43,4 +43,4 @@ function mapStateToProps(state) {
   }
 
 
-export default connect(mapStateToProps,{ fetchUsers })(Leaderboard);
+export default connect(mapStateToProps,{ fetchSortedUsers })(Leaderboard);
