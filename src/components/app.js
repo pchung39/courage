@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import EntriesIndex from "../components/entries_index";
 import EntriesMetadata from "../components/entries_metadata";
 import AppBarHeader from "./header_bar";
@@ -9,7 +10,15 @@ import VisibilityFilter from "../components/visibility_filters";
 import SignUp from "./signup";
 import SignIn from "./signin";
 
-export default class App extends Component {
+class App extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  authRedirect = (props) => {
+
+  }
+
   render() {
     return (
       <Router>
@@ -57,3 +66,9 @@ export default class App extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { authStatus: state.auth.authenticated }
+}
+
+export default connect(mapStateToProps, null)(App);

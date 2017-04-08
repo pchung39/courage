@@ -142,10 +142,10 @@ export function signinUser({ email, password }) {
 
 }
 
-export function signupUser({ email, password }) {
+export function signupUser({ name, email, password }) {
   return function(dispatch) {
     // submit email/password to the server
-    axios.post(`${AUTH_ROOT_URL}/signup`, { email, password })
+    axios.post(`${AUTH_ROOT_URL}/signup`, { name, email, password })
       .then(response => {
 
           dispatch({ type: AUTH_USER })

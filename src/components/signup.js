@@ -11,8 +11,9 @@ class SignUp extends Component {
     super(props)
   }
 
-  onSubmit = ({ email, password }) => {
-    this.props.signupUser({ email, password });
+  onSubmit = ({ name, email, password }) => {
+    console.log({name,email,password});
+    this.props.signupUser({ name, email, password });
   }
 
   render() {
@@ -30,7 +31,14 @@ class SignUp extends Component {
         <h3>Sign Up!</h3>
 
         <div>
-          <label><h3>Username</h3></label>
+          <label><h3>Name</h3></label>
+          <div>
+            <Field name="name" component="input" type="text" />
+          </div>
+        </div>
+
+        <div>
+          <label><h3>Email</h3></label>
           <div>
             <Field name="email" component="input" type="text" />
           </div>
@@ -52,14 +60,6 @@ class SignUp extends Component {
   }
 };
 
-function validate(formProps) {
-  const errors = {};
-  if (formProps.password !== formProps.passwordConfirm) {
-    errors.password = "Passwords must match";
-  }
-
-  return errors;
-}
 
 let signUpForm = reduxForm(
   { form: "signUpForm" }
