@@ -10,6 +10,7 @@ import VisibilityFilter from "../components/visibility_filters";
 import SignUp from "./signup";
 import SignIn from "./signin";
 import Leaderboard from "./leaderboard";
+import StreakChart from "./charts";
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class App extends Component {
             <div className="combinedData">
               <Leaderboard />
               <EntriesMetadata />
+              <StreakChart />
               <EntriesIndex />
             </div>
           </div>) :

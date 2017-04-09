@@ -177,9 +177,9 @@ export function signinUser({ email, password }) {
     axios.post(`${AUTH_ROOT_URL}/signin`, { email, password })
       .then(response => {
 
-          dispatch({ type: AUTH_USER })
 
           localStorage.setItem("token", response.data.token);
+          dispatch({ type: AUTH_USER })
 
       })
       .catch(() => {
@@ -197,9 +197,8 @@ export function signupUser({ name, email, password }) {
     axios.post(`${AUTH_ROOT_URL}/signup`, { name, email, password })
       .then(response => {
 
-          dispatch({ type: AUTH_USER })
-
           localStorage.setItem("token", response.data.token);
+          dispatch({ type: AUTH_USER })
 
       })
       .catch((response) => {

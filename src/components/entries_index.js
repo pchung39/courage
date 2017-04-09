@@ -17,6 +17,7 @@ class EntriesIndex extends Component {
   };
 
   componentWillMount() {
+    console.log(localStorage.getItem("token"));
     this.props.fetchEntries();
   }
 
@@ -90,7 +91,8 @@ class EntriesIndex extends Component {
 const mapStateToProps = (state) => {
   return {
     filter: state.filter,
-    entries: getVisibleEntries(state.entries.all, state.filter)
+    entries: getVisibleEntries(state.entries.all, state.filter),
+    authStatus: state.auth.authenticated
   }
 }
 
