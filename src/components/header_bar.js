@@ -28,16 +28,22 @@ class AppBarHeader extends Component {
             <h1 className="titleLetter6">G</h1>
             <h1 className="titleLetter7">E</h1>
           </div>
-          <div className="headerActions">
-            <a href="/new">
-              <i className="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
-            </a>
-            <i className="fa fa-sign-out fa-2x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
-          </div>
+
+          { this.props.authStatus == true &&
+            <div className="headerActions">
+              <a href="/new"><i className="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+              <i className="fa fa-sign-out fa-2x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
+            </div> }
         </header>
 
     );
     }
   }
 
-export default connect(null, { signoutUser })(AppBarHeader);
+function mapStateToProps(state) {
+  return {
+    authStatus: state.auth.authenticated
+  };
+}
+
+export default connect(mapStateToProps, { signoutUser })(AppBarHeader);

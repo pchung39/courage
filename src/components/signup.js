@@ -31,7 +31,7 @@ class SignUp extends Component {
         <h3 className="formTitle">Sign Up</h3>
         <hr className="underline"/>
         <div className="inputDiv">
-          <label id="nameLabel"><p>Name</p></label>
+          <label className="nameLabel"><p>Name</p></label>
           <div>
             <Field className="name" name="name" component="input" type="text" />
           </div>
