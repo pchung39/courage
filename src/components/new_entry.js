@@ -19,27 +19,29 @@ class NewEntry extends Component {
   render() {
     const { handleSubmit, reset } = this.props;
     return(
-      <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-        <h3>Create a New Post</h3>
+      <div className="formContainer">
+      <form className="entryForm" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
+        <h3 className="formTitle">Add to Your Courage</h3>
+        <hr className="underline" />
 
-        <div>
-          <label><h3>Ask</h3></label>
+        <div className="inputDiv">
+          <label className="askLabel"><p>Ask</p></label>
           <div>
-            <Field name="ask" component="input" type="text" placeholder="What did you ask?"/>
+            <Field className="ask" name="ask" component="input" type="text" placeholder="What did you ask?"/>
+          </div>
+        </div>
+
+        <div className="inputDiv">
+          <label className="askeeLabel"><p>Askee</p></label>
+          <div>
+            <Field className="askee" name="askee" component="input" type="text" placeholder="Who did you ask?"/>
           </div>
         </div>
 
         <div>
-          <label><h3>Askee</h3></label>
-          <div>
-            <Field name="askee" component="input" type="text" placeholder="Who did you ask?"/>
-          </div>
-        </div>
-
+        <label className="outcomeLabel"><p>Outcome</p></label>
         <div>
-        <label><h3>Outcome</h3></label>
-        <div>
-          <Field name="outcome" component="select">
+          <Field className="outcome" name="outcome" component="select">
             <option></option>
             <option value="accepted">Accepted</option>
             <option value="rejected">Rejected</option>
@@ -48,7 +50,7 @@ class NewEntry extends Component {
       </div>
 
       <div>
-      <label><h3>Category</h3></label>
+      <label className="categoryLabel"><p>Category</p></label>
       <div>
         <Field name="category" component="select">
           <option></option>
@@ -60,9 +62,10 @@ class NewEntry extends Component {
       </div>
     </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
-        <button><Link to="/me" className="btn btn-danger">Cancel</Link></button>
+        <button type="submit" className="submitButton">Submit</button>
+        <button className="cancelButton"><Link to="/me">Cancel</Link></button>
       </form>
+    </div>
     );
   };
 

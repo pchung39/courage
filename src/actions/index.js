@@ -105,27 +105,6 @@ export function fetchUsers() {
 
 /*  THUNK FUNCTION: SORT USERS FOR LEADERBOARD */
 
-function sortList (users) {
-  //console.log("sorted list users: ", users);
-    for (var first = 0; first < users.length; first++) {
-      for (var second = 1; second < users.length; second++) {
-        if (users[second].entries.length < users[first].entries.length) {
-          var temp = users[second];
-          users[second] = users[first];
-          users[first] = temp;
-        }
-      };
-    };
-    console.log(users)
-    return {
-      type: FETCH_USERS,
-      payload: users
-    };
-
-}
-
-
-
 function quickSort(users) {
   if (users.length <= 1) {
     return users;
@@ -158,7 +137,7 @@ export function fetchSortedUsers() {
               var sortedList = quickSort(response);
               dispatch({
                 type: FETCH_USERS,
-                payload: sortedList.reverse().slice(0,4)
+                payload: sortedList.reverse().slice(0,5)
               });
           });
       };

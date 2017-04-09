@@ -18,7 +18,7 @@ class Leaderboard extends Component {
   return users.map((user) => {
   return (
       <li className="singleUser" key={user._id}>
-        <h3 id="userName">{user.name}</h3>
+        <p id="userName">{user.name}</p>
         <p id="userEntriesLength">{user.entries.length}</p>
       </li>
       );
@@ -28,6 +28,7 @@ class Leaderboard extends Component {
   render() {
   return (
       <div className="leaderboardContainer">
+        <p id="leaderboardTitle"> Leaderboard </p>
         <ul className="leaderboardList">
           {this.renderList()}
         </ul>

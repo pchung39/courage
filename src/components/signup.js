@@ -26,34 +26,34 @@ class SignUp extends Component {
         };
 
     return(
-      <div>
-      <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-        <h3>Sign Up!</h3>
-
-        <div>
-          <label><h3>Name</h3></label>
+      <div className="formContainer">
+      <form className="signupForm" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
+        <h3 className="formTitle">Sign Up</h3>
+        <hr className="underline"/>
+        <div className="inputDiv">
+          <label id="nameLabel"><p>Name</p></label>
           <div>
-            <Field name="name" component="input" type="text" />
+            <Field className="name" name="name" component="input" type="text" />
           </div>
         </div>
 
-        <div>
-          <label><h3>Email</h3></label>
+        <div className="inputDiv">
+          <label className="emailLabel"><p>Email</p></label>
           <div>
-            <Field name="email" component="input" type="text" />
+            <Field className="email" name="email" component="input" type="text" />
           </div>
         </div>
 
-        <div>
-          <label><h3>Password</h3></label>
+        <div className="inputDiv">
+          <label className="passwordLabel"><p>Password</p></label>
           <div>
-            <Field name="password" component="input" type="password" />
+            <Field className="password" name="password" component="input" type="password" />
           </div>
         </div>
 
 
-        <button type="submit" className="btn btn-primary">Submit</button>
-        <button><Link to="/me" className="btn btn-danger">Cancel</Link></button>
+        <button type="submit" className="submitButton">Submit</button>
+        <button className="cancelButton"><Link to="/me">Cancel</Link></button>
       </form>
     </div>
     )

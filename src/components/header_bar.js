@@ -30,9 +30,9 @@ class AppBarHeader extends Component {
           </div>
           <div className="headerActions">
             <a href="/new">
-              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <i className="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
             </a>
-            <i className="fa fa-sign-out" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
+            <i className="fa fa-sign-out fa-2x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
           </div>
         </header>
 

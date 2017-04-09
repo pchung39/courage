@@ -30,6 +30,21 @@ class EntriesIndex extends Component {
     return date.toDateString();
   }
 
+  categoryColor(category) {
+    if (category === "romance") {
+      return <p id="category-romance">{category}</p>
+    }
+    if (category === "family") {
+       return <p id="category-family">{category}</p>
+    }
+    if (category === "friends") {
+       return <p id="category-friends">{category}</p>
+    }
+    if (category === "career") {
+      return <p id="category-career">{category}</p>
+    }
+  }
+
   entryCard = (entries) => (
     <div className="cardContent">
       <div className="deleteButton">
@@ -38,7 +53,7 @@ class EntriesIndex extends Component {
       <p id="timestamp">{this.convertDate(entries.timestamp)}</p>
       <h3 id="ask">{entries.ask}</h3>
       <p id="askee">{entries.askee}</p>
-      <p id="category">{entries.category}</p>
+      {this.categoryColor(entries.category)}
     </div>
   );
 
@@ -57,13 +72,17 @@ class EntriesIndex extends Component {
 
   render() {
     return (
-      <div className="topContainer">
-        <div className="cardContainer">
-          <ul className="cardList">
-            {this.renderApprovedEntries()}
-          </ul>
+        <div className="topContainer">
+          { this.props.entries.length ?
+          <div className="cardContainer">
+            <ul className="cardList">
+              {this.renderApprovedEntries()}
+            </ul>
+        </div> :
+        <h1>No Entries Found</h1> }
+
       </div>
-    </div>
+
     );
   }
 }

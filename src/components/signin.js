@@ -38,30 +38,30 @@ class SignIn extends Component {
 
 
     return(
-      <div>
-      <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-        <h3>Sign In!</h3>
-
+      <div className="formContainer">
+      <form className="signinForm" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
+        <h3 className="formTitle">Sign In</h3>
+        <hr className="underline" />
         <div>
         {this.renderAlert()}
         </div>
 
-        <div>
-          <label><h3>Username</h3></label>
+        <div className="inputDiv">
+          <label className="emailLabel"><p>Email</p></label>
           <div>
-            <Field name="email" component="input" type="text" />
+            <Field className="email" name="email" component="input" type="text" />
           </div>
         </div>
 
-        <div>
-          <label><h3>Password</h3></label>
+        <div className="inputDiv">
+          <label className="passwordLabel"><p>Password</p></label>
           <div>
-            <Field name="password" component="input" type="password" />
+            <Field className="password" name="password" component="input" type="password" />
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
-        <button><Link to="/me" className="btn btn-danger">Cancel</Link></button>
+        <button type="submit" className="submitButton">Submit</button>
+        <button className="cancelButton"><Link to="/me">Cancel</Link></button>
       </form>
 
     </div>

@@ -36,8 +36,8 @@ class App extends Component {
             <AppBarHeader />
             <VisibilityFilter />
             <div className="combinedData">
-              <EntriesMetadata />
               <Leaderboard />
+              <EntriesMetadata />
               <EntriesIndex />
             </div>
           </div>) :

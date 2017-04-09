@@ -13,6 +13,8 @@ const Landing = () => {
         <h1 className="titleLetter6">G</h1>
         <h1 className="titleLetter7">E</h1>
       </div>
+      <button id="signInButton" onClick="location.href='/signin'">Sign In</button>
+      <button id="signupButton" onClick="location.href='/signup'">Sign Up</button>
     </div>
   )
 }

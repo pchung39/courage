@@ -40,6 +40,7 @@
 .headerBar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: red;
 }
 
@@ -50,11 +51,30 @@
   font-size: 14px;
 }
 
+.headerActions {
+  margin-right: 30px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fa-pencil-square-o {
+  margin-right: 15px;
+  color: white;
+}
+
+.fa-sign-out {
+  color: white;
+}
+
 .titleLetter1, .titleLetter2, .titleLetter3, .titleLetter4,
 .titleLetter5, .titleLetter6, .titleLetter7 {
   padding-right: 6px;
   color: white;
 }
+
 
 /* === FILTERS === */
 
@@ -129,16 +149,82 @@
   margin-left: 20px;
 }
 
+#timestamp {
+  font-size: 10px;
+  color: grey;
+  margin-left: 20px;
+}
+
 #category {
   font-size: 10px;
   margin-left: 20px;
   margin-top: 4px;
   background-color: blue;
-  color: white;
-  padding: 5px;
-  max-width: 30px;
+  color: black;
+  padding-left: 8px;
+  padding-right: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 20px;
   border-radius: 5px;
 }
+
+#category-romance {
+  font-size: 10px;
+  margin-left: 20px;
+  margin-top: 4px;
+  background-color: #FF6668;
+  color: white;
+  padding-left: 8px;
+  padding-right: 26px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 20px;
+  border-radius: 5px;
+}
+
+#category-family {
+  font-size: 10px;
+  margin-left: 20px;
+  margin-top: 4px;
+  background-color: #7E8FFF;
+  color: white;
+  padding-left: 8px;
+  padding-right: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 20px;
+  border-radius: 5px;
+}
+
+#category-friends {
+  font-size: 10px;
+  margin-left: 20px;
+  margin-top: 4px;
+  background-color: #FFCE89;
+  color: white;
+  padding-left: 8px;
+  padding-right: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 20px;
+  border-radius: 5px;
+}
+
+#category-career {
+  font-size: 10px;
+  margin-left: 20px;
+  margin-top: 4px;
+  background-color: #AEAFB4;
+  color: white;
+  padding-left: 8px;
+  padding-right: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 20px;
+  border-radius: 5px;
+}
+
 
 .deleteButton {
   display: flex;
@@ -186,4 +272,107 @@
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
+}
+
+/* === LEADERBOARD === */
+
+.leaderboardContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #738EFF;
+}
+
+.leaderboardList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 90vw;
+  margin-left: 20px;
+}
+
+#leaderboardTitle {
+  margin-left: 30px;
+  margin-top: 10px;
+  color: white;
+}
+
+.singleUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  margin: 20px 10px;
+  padding: 5px 15px;
+  color: white;
+}
+
+.singleUser:hover {
+  background: white;
+  color: #738EFF;
+}
+
+/* === SIGNUP & SIGNIN & NEW ENTRY PAGE === */
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+}
+
+.signupForm, .signinForm, .entryForm {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40vw;
+  margin-top: 10vw;
+}
+
+
+.formTitle {
+  color: red;
+}
+
+.underline {
+  margin-top: 4px;
+  width: 10%;
+  border-width: 5px;
+  color: red;
+  border-style: solid;
+}
+
+.inputDiv {
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+.nameLabel, .emailLabel, .passwordLabel, .askLabel, .askeeLabel, .outcomeLabel, .categoryLabel {
+  font-size: 13px;
+  color: red;
+}
+
+.name, .email, .password, .ask, .askee {
+  padding: 5px 20px;
+}
+
+.outcome {
+  padding: 30px;
+}
+
+.submitButton, .cancelButton {
+  width: 170px;
+  margin-top: 6px;
+  outline: none;
+  border: none;
+  color: white;
+  padding: 4px;
+}
+
+.submitButton {
+  background-color: blue;
+}
+
+.cancelButton {
+  background-color: red;
 }

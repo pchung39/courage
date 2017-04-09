@@ -17,17 +17,4 @@ const getVisibleEntries = (entries, filter) => {
   }
 }
 
-/*
-const mapStateToProps = (state) => {
-  return {
-    entries: getVisibleEntries(state.entries.all, state.filter)
-  }
-}
-
-const VisibleEntriesList = connect(
-  mapStateToProps,
-  null
-)(EntriesIndex);
-*/
-
 export default getVisibleEntries;
