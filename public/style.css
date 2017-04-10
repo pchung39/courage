@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
 }
@@ -22,6 +23,59 @@
   background-color: red;
   width: 40%;
   height: 10%;
+}
+
+.landingPageContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.landingButton {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  padding-left: 12px;
+  padding-right: 10px;
+  padding-bottom: 3px;
+  background-color: white;
+}
+
+#landingSignInButton {
+  margin-top: 6px;
+  margin-left: 4px;
+  outline: none;
+  border: none;
+  color: blue;
+  padding: 4px;
+  background-color: white;
+}
+
+#landingSignUpButton {
+  margin-top: 6px;
+  margin-left: 4px;
+  outline: none;
+  border: none;
+  color: blue;
+  padding: 4px;
+  background-color: white;
+}
+
+.landingSignUp {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  padding-left: 12px;
+  padding-right: 10px;
+  padding-bottom: 3px;
+  background-color: white;
+}
+
+.fa-thumbs-up, .fa-user-plus {
+  color: blue;
+}
+
+.fa-thumbs-up:hover, .fa-user-plus:hover {
+  color: red;
 }
 
 /* === MAIN PAGE === */

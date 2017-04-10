@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 
 const Landing = () => {
@@ -13,8 +15,16 @@ const Landing = () => {
         <h1 className="titleLetter6">G</h1>
         <h1 className="titleLetter7">E</h1>
       </div>
-      <button id="signInButton" onClick="location.href='/signin'">Sign In</button>
-      <button id="signupButton" onClick="location.href='/signup'">Sign Up</button>
+      <div className="landingPageContainer">
+        <div className="landingButton">
+          <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+          <button id="landingSignInButton"><Link to="/signin">Sign In</Link></button>
+        </div>
+        <div className="landingSignUp">
+          <i className="fa fa-user-plus" aria-hidden="true"></i>
+          <button id="landingSignUpButton"><Link to="/signup">Sign Up</Link></button>
+        </div>
+      </div>
     </div>
   )
 }
