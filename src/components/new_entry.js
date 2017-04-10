@@ -27,7 +27,7 @@ class NewEntry extends Component {
         <div className="inputDiv">
           <label className="askLabel"><p>Ask</p></label>
           <div>
-            <Field className="ask" name="ask" component="input" type="text" placeholder="What did you ask?"/>
+            <Field className="ask" name="ask" component="input" type="textarea" placeholder="What did you ask?"/>
           </div>
         </div>
 
