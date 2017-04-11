@@ -12,8 +12,20 @@ class EntriesMetadata extends Component {
   render() {
     return (
         <div className="metadataMain">
-          <h4 className="streakText">Longest Streak: {this.props.streak}</h4>
-          <h4 className="pointsText">Total Points: {this.props.points}</h4>
+          <div className="statsTitle">
+            <p id="userStatsTitle">Your Stats</p>
+            <hr />
+          </div>
+          <div className="streakText">
+            <i className="fa fa-bolt" aria-hidden="true"></i>
+            <p className="metadataTitle">Longest Streak</p>
+            <p className="metadataValue">{this.props.streak}</p>
+          </div>
+            <div className="pointsText">
+            <i className="fa fa-hand-peace-o" aria-hidden="true"></i>
+            <p className="metadataTitle">Total Points</p>
+            <p className="metadataValue">{this.props.points}</p>
+          </div>
         </div>
     );
     }

@@ -140,23 +140,110 @@ a {
   background: red;
 }
 
+
+/* === USER METADATA === */
+
 .metadataMain {
   display: flex;
-  justify-content: flex-start;
-  padding-left: 30px;
-  flex-direction: row;
-  margin: 6px 0px;
+  justify-content: center;
+  flex-direction: column;
+  width: 20vw;
 }
 
-.streakText {
-  margin-right: 25px;
+.streakText, .pointsText {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  padding: 20px 0px;
+  width: 200px;
 }
 
-/* === ENTRIES METADATA === */
+
+.metadataTitle {
+  font-size: 12px;
+}
+
+.metadataValue {
+  font-size: 30px;
+}
 
 .metadataContainer {
   display: flex;
   flex-direction: row;
+}
+
+#userStatsTitle {
+  margin-left: 30px;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.statsTitle {
+  margin-bottom: 6px;
+}
+
+.fa-bolt {
+  color: yellow;
+  margin-bottom: 4px;
+}
+
+.fa-hand-peace-o {
+  color: green;
+  margin-bottom: 7px;
+}
+
+.metadataMain hr {
+  margin-top: 4px;
+  margin-bottom: 5px;
+  margin-left: 30px;
+  width: 6%;
+  border-width: 3px;
+  color: white;
+  border-style: solid;
+}
+
+
+/* === CHART === */
+
+.graphContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+#yaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 25px;
+}
+
+#yaxis p {
+  font-size: 12px;
+}
+
+#yaxis-rejected {
+  margin-bottom: 70px;
+}
+
+#yaxis-accepted {
+  margin-top: 25px;
+}
+
+#xaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#xaxisLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
 }
 
 /* === ENTRIES === */
@@ -372,6 +459,15 @@ a {
   background-color: #738EFF;
 }
 
+.leaderboardContainer hr {
+  margin-top: 4px;
+  margin-left: 30px;
+  width: 2%;
+  border-width: 3px;
+  color: white;
+  border-style: solid;
+}
+
 .leaderboardList {
   display: flex;
   flex-direction: row;
@@ -383,8 +479,9 @@ a {
 
 #leaderboardTitle {
   margin-left: 30px;
-  margin-top: 10px;
+  margin-top: 16px;
   color: white;
+  font-size: 14px;
 }
 
 .singleUser {

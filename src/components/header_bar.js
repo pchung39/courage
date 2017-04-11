@@ -31,8 +31,8 @@ class AppBarHeader extends Component {
 
           { this.props.authStatus == true &&
             <div className="headerActions">
-              <a href="/new"><i className="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
-              <i className="fa fa-sign-out fa-2x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
+              <a href="/new"><i className="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i></a>
+              <i className="fa fa-sign-out fa-1x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
             </div> }
         </header>
 

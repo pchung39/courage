@@ -33,18 +33,20 @@ class StreakChart extends Component {
     return (
       <div className="graphContainer">
         <div id="yaxis">
-          <p>Accepted</p>
-          <p>Rejected</p>
+          <p id="yaxis-accepted">Accepted</p>
+          <p id="yaxis-rejected">Rejected</p>
         </div>
-        <LineChart width={1000} height={300} data={this.streakData()}
-              margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-         <XAxis />
-         <YAxis />
-         <CartesianGrid strokeDasharray="3 3"/>
-         <Line type="monotone" dataKey="outcome" stroke="#8884d8" activeDot={{r: 8}}/>
-        </LineChart>
         <div id="xaxis">
-          <p>Entries</p>
+          <LineChart width={1000} height={300} data={this.streakData()}
+                margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+           <XAxis />
+           <YAxis />
+           <CartesianGrid strokeDasharray="3 3"/>
+           <Line type="monotone" dataKey="outcome" stroke="#8884d8" activeDot={{r: 8}}/>
+          </LineChart>
+          <div id="xaxisLabel">
+            <p>Entries</p>
+          </div>
         </div>
       </div>
     );

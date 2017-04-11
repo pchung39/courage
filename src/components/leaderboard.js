@@ -48,6 +48,7 @@ class Leaderboard extends Component {
   return (
       <div className="leaderboardContainer">
         <p id="leaderboardTitle"> Leaderboard </p>
+        <hr id="leaderboardUnderline" />
         <ul className="leaderboardList">
           {this.renderList()}
         </ul>
