@@ -36,12 +36,12 @@ class App extends Component {
           (<div className="mainContainer">
             <AppBarHeader />
             <VisibilityFilter />
-            <div className="combinedData">
               <Leaderboard />
-              <EntriesMetadata />
-              <StreakChart />
-              <EntriesIndex />
-            </div>
+              <div className="metadataContainer">
+                <EntriesMetadata />
+                <StreakChart />
+              </div>
+                <EntriesIndex />
           </div>) :
           ( <Redirect to="/signin" /> )
         )} />

@@ -46,15 +46,27 @@ class EntriesIndex extends Component {
     }
   }
 
+  outcomeColor(outcome) {
+    if (outcome === "accepted") {
+      return <p id="outcome-accepted">ACCEPTED</p>
+    }
+    else {
+      return <p id="outcome-rejected">REJECTED</p>
+    }
+  }
+
   entryCard = (entries) => (
     <div className="cardContent">
-      <div className="deleteButton">
-        <button id="deleteEntry" onClick={() => {this.props.deleteEntry(entries._id)}}>X</button>
+      <div className="cardMetadata">
+        {this.outcomeColor(entries.outcome)}
+        <p id="timestamp">{this.convertDate(entries.timestamp)}</p>
+        <h3 id="ask">{entries.ask}</h3>
+        <p id="askee">{entries.askee}</p>
+        {this.categoryColor(entries.category)}
       </div>
-      <p id="timestamp">{this.convertDate(entries.timestamp)}</p>
-      <h3 id="ask">{entries.ask}</h3>
-      <p id="askee">{entries.askee}</p>
-      {this.categoryColor(entries.category)}
+      <div className="deleteButton">
+        <i className="fa fa-trash" aria-hidden="true" onClick={() => {this.props.deleteEntry(entries._id)}}></i>
+      </div>
     </div>
   );
 
