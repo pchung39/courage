@@ -137,7 +137,6 @@ a {
   justify-content: flex-start;
   order: 0;
   padding-left: 30px;
-  background: red;
 }
 
 
@@ -298,6 +297,7 @@ a {
 
 .topContainer {
   display: flex;
+  flex-direction: column;
   background-color: #F1F1F1;
   height: 100vh;
 }

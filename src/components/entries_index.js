@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEntries, deleteEntry } from '../actions/index';
 import getVisibleEntries from '../containers/visible_entries';
-
+import VisibilityFilter from "./visibility_filters";
 
 const style = {
   maxWidth: 600,
@@ -86,6 +86,7 @@ class EntriesIndex extends Component {
   render() {
     return (
         <div className="topContainer">
+          <VisibilityFilter />
           { this.props.entries.length ?
           <div className="cardContainer">
             <ul className="cardList">

@@ -35,7 +35,6 @@ class App extends Component {
           this.props.authStatus ?
           (<div className="mainContainer">
             <AppBarHeader />
-            <VisibilityFilter />
               <Leaderboard />
               <div className="metadataContainer">
                 <EntriesMetadata />
