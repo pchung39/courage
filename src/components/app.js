@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import EntriesIndex from "../components/entries_index";
-import EntriesMetadata from "../components/entries_metadata";
+import EntriesContainer from "../containers/entries_list";
+import EntriesStatsContanier from "../containers/entries_stats";
 import AppBarHeader from "./header_bar";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import NewEntry from "../components/new_entry";
@@ -37,10 +37,10 @@ class App extends Component {
             <AppBarHeader />
               <Leaderboard />
               <div className="metadataContainer">
-                <EntriesMetadata />
+                <EntriesStatsContanier />
                 <StreakChart />
               </div>
-                <EntriesIndex />
+                <EntriesContainer />
           </div>) :
           ( <Redirect to="/signin" /> )
         )} />
