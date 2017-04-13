@@ -9,7 +9,7 @@ import Landing from "../components/landing_page";
 import VisibilityFilter from "../components/visibility_filters";
 import SignUp from "./signup";
 import SignIn from "./signin";
-import Leaderboard from "./leaderboard";
+import LeaderboardContainer from "../containers/leaderboard_container";
 import StreakChart from "./charts";
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
           this.props.authStatus ?
           (<div className="mainContainer">
             <AppBarHeader />
-              <Leaderboard />
+              <LeaderboardContainer />
               <div className="metadataContainer">
                 <EntriesStatsContanier />
                 <StreakChart />
