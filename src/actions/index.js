@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { browserHistory } from "react-router";
 import { AUTH_USER,
         AUTH_ERROR,
         UNAUTH_USER

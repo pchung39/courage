@@ -1,21 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { fetchEntries } from "../actions/index";
+import React from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from "recharts";
 
-class StreakChart extends Component {
-  constructor(props) {
-    super(props)
-  };
+const StreakChart = ({ entries }) => {
 
-  componentWillMount() {
-    this.props.fetchEntries();
-  };
-
-  streakData() {
-    var entries = this.props.entries;
-    var newData = []
+  let streakData = () => {
+    let newData = []
 
     for (var i = 0; i < entries.length; i++) {
       if (entries[i].outcome === "accepted") {
@@ -25,11 +14,9 @@ class StreakChart extends Component {
       }
     }
 
-    console.log(newData);
     return newData;
   }
 
-  render() {
     return (
       <div className="graphContainer">
         <div id="yaxis">
@@ -37,7 +24,7 @@ class StreakChart extends Component {
           <p id="yaxis-rejected">Rejected</p>
         </div>
         <div id="xaxis">
-          <LineChart width={1000} height={300} data={this.streakData()}
+          <LineChart width={1000} height={300} data={streakData()}
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
            <XAxis />
            <YAxis />
@@ -50,13 +37,7 @@ class StreakChart extends Component {
         </div>
       </div>
     );
-    }
-  }
+  };
 
-const mapStateToProps = (state) => {
-  return {
-    entries: state.entries.all
-  }
-}
 
-export default connect(mapStateToProps, { fetchEntries })(StreakChart);
+export default StreakChart;

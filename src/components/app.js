@@ -10,7 +10,7 @@ import VisibilityFilter from "../components/visibility_filters";
 import SignUp from "./signup";
 import SignIn from "./signin";
 import LeaderboardContainer from "../containers/leaderboard_container";
-import StreakChart from "./charts";
+import ChartContainer from "../containers/chart_container";
 
 class App extends Component {
   constructor(props) {
@@ -38,10 +38,10 @@ class App extends Component {
               <LeaderboardContainer />
               <div className="metadataContainer">
                 <EntriesStatsContanier />
-                <StreakChart />
+                <ChartContainer />
               </div>
                 <EntriesContainer />
-          </div>) :
+            </div>) :
           ( <Redirect to="/signin" /> )
         )} />
 

@@ -17,7 +17,11 @@ class EntriesContainer extends Component {
 
   render() {
     const { entries, deleteEntry } = this.props;
-    return <EntriesIndex entries={entries} deleteEntry={deleteEntry} />
+    return (
+      <div>
+        <EntriesIndex entries={entries} deleteEntry={deleteEntry} />
+      </div>
+    )
   }
 
 }
