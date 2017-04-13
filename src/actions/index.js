@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { AUTH_USER,
-        AUTH_ERROR,
-        UNAUTH_USER
-      } from "./types";
 
+export const AUTH_USER = "AUTH_USER";
+export const UNAUTH_USER = "UNAUTH_USER";
+export const AUTH_ERROR = "AUTH_ERROR";
 export const CREATE_ENTRY = 'CREATE_ENTRY';
 export const FETCH_ENTRIES = 'FETCH_ENTRIES';
 export const FETCH_ENTRY = 'FETCH_ENTRY';
