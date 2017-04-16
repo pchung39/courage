@@ -36,11 +36,13 @@ class App extends Component {
           (<div className="mainContainer">
             <AppBarHeader />
               <LeaderboardContainer />
-              <div className="metadataContainer">
-                <EntriesStatsContanier />
-                <ChartContainer />
-              </div>
-                <EntriesContainer />
+                <div className="metadataContainer">
+                  <EntriesStatsContanier />
+                    { this.props.entries.length > 0 &&
+                      <ChartContainer />
+                    }
+                </div>
+              <EntriesContainer />
             </div>) :
           ( <Redirect to="/signin" /> )
         )} />
@@ -75,7 +77,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { authStatus: state.auth.authenticated }
+  return {
+    authStatus: state.auth.authenticated,
+    entries: state.entries.all
+  }
 }
 
 export default connect(mapStateToProps, null)(App);

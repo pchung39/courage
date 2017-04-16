@@ -68,7 +68,7 @@ const EntriesIndex = ({ entries, deleteEntry }) => {
               {renderApprovedEntries()}
             </ul>
         </div> :
-        <h1>No Entries Found</h1> }
+        <h1 className="noEntries">No Entries Found</h1> }
 
       </div>
 
