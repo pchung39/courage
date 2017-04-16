@@ -24,7 +24,7 @@ const Leaderboard = ({ users }) => {
               {selectUserPhoto()}
               <div className="leaderboardInfo">
                 <p id="userName">{user.name}</p>
-                <p id="userEntriesLength">{user.entries.length}</p>
+                <p id="userEntriesLength">{user.points}</p>
               </div>
             </li>
           </div>

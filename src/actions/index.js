@@ -68,10 +68,10 @@ function calculateTotalPoints(entries){
   var totalPoints = 0;
   for (var pos = 0; pos <= entries.length - 1; pos++ ) {
     if (entries[pos].outcome === "rejected") {
-      totalPoints += 10;
+      totalPoints = totalPoints + 10;
     }
     else {
-      totalPoints += 1;
+      totalPoints = totalPoints + 1;
     }
   }
 
@@ -115,7 +115,7 @@ function quickSort(users) {
 
 
       for (var i = 0; i < users.length; i++) {
-          if (users[i].entries.length < pivot.entries.length) {
+          if (users[i].points < pivot.points) {
               left.push(users[i]);
           } else {
               right.push(users[i]);
@@ -163,6 +163,9 @@ export function deleteEntry(id) {
         })
           .then(() => {
               dispatch(fetchEntries());
+          })
+          .then(() => {
+              dispatch(longestStreak());
           });
       };
 };
