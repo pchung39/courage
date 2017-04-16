@@ -36,6 +36,12 @@ class NewEntry extends Component {
     .then( this.props.dispatch(reset("newEntryForm")) );
   }
 
+  onSuccess(props) {
+    if (this.props.success === true) {
+      return <h3>Success Post! Courage Increased</h3>
+    }
+  }
+
   render() {
     const { handleSubmit, reset } = this.props;
     return(
@@ -43,6 +49,8 @@ class NewEntry extends Component {
       <form className="entryForm" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
         <h3 className="formTitle">Add to Your Courage</h3>
         <hr className="underline" />
+
+        <div>{this.onSuccess()}</div>
 
         <div className="inputDiv">
           <label className="askLabel"><p>Ask</p></label>
@@ -113,10 +121,14 @@ class NewEntry extends Component {
 
 }
 
+function mapStateToProps(state) {
+  return { success: state.entries.success }
+}
+
 
 let EntryForm = reduxForm(
   { form: "newEntryForm" }
 )(NewEntry);
 
 
-export default EntryForm;
+export default connect(mapStateToProps, null)(EntryForm);
