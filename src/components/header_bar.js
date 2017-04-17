@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { signoutUser } from "../actions/index";
+import { signoutUser, fetchCurrentUser } from "../actions/index";
 
 
 class AppBarHeader extends Component {
@@ -8,8 +8,11 @@ class AppBarHeader extends Component {
     super(props)
   };
 
+  componentWillMount() {
+    this.props.fetchCurrentUser();
+  }
+
   signOut() {
-    console.log("User signed out");
     this.props.signoutUser();
   };
 
@@ -28,6 +31,8 @@ class AppBarHeader extends Component {
 
           { this.props.authStatus === true &&
             <div className="headerActions">
+              <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+              <p className="userName">{this.props.currentUser}</p>
               <a href="/new"><i className="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i></a>
               <i className="fa fa-sign-out fa-1x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
             </div> }
@@ -39,8 +44,9 @@ class AppBarHeader extends Component {
 
 function mapStateToProps(state) {
   return {
-    authStatus: state.auth.authenticated
+    authStatus: state.auth.authenticated,
+    currentUser: state.users.current
   };
 }
 
-export default connect(mapStateToProps, { signoutUser })(AppBarHeader);
+export default connect(mapStateToProps, { signoutUser, fetchCurrentUser })(AppBarHeader);

@@ -14,7 +14,8 @@ class NewEntry extends Component {
       ask: "",
       askee: "",
       outcome: "",
-      category: ""
+      category: "",
+      complete: false
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -38,12 +39,13 @@ class NewEntry extends Component {
 
   onSuccess(props) {
     if (this.props.success === true) {
-      return <h3>Success Post! Courage Increased</h3>
+      return <h3>Successful Post! Courage Increased</h3>
     }
   }
 
   render() {
     const { handleSubmit, reset } = this.props;
+    var submitClass = this.state.complete ? "submit-enabled" : "submit-disabled";
     return(
       <div className="formContainer">
       <form className="entryForm" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
@@ -112,7 +114,7 @@ class NewEntry extends Component {
       </div>
     </div>
 
-        <button type="submit" className="submitButton">Submit</button>
+        <button type="submit" id="submitButton" >Submit</button>
         <button className="cancelButton"><Link to="/me">Cancel</Link></button>
       </form>
     </div>

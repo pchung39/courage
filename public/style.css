@@ -106,6 +106,9 @@
 }
 
 .headerActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-right: 30px;
 }
 
@@ -129,6 +132,17 @@ a {
   color: white;
 }
 
+.fa-user-circle-o {
+  color: white;
+  margin-right: 5px;
+}
+
+.userName {
+  color: white;
+  font-size: 14px;
+  margin-right: 20px;
+  margin-left: 3px;
+}
 
 /* === FILTERS === */
 
@@ -230,14 +244,17 @@ a {
 
 #yaxis p {
   font-size: 12px;
+  color: grey;
 }
 
 #yaxis-rejected {
-  margin-bottom: 70px;
+  margin-bottom: 45px;
+  color: grey;
 }
 
 #yaxis-accepted {
   margin-top: 25px;
+  color: grey;
 }
 
 #xaxis {
@@ -565,6 +582,20 @@ a {
 
 .submitButton {
   background-color: blue;
+}
+
+#submitButton {
+  width: 170px;
+  margin-top: 6px;
+  outline: none;
+  border: none;
+  color: white;
+  padding: 4px;
+  background-color: blue;
+}
+
+.submit-disabled {
+  opacity: 0.30;
 }
 
 .cancelButton {

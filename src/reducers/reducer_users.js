@@ -1,12 +1,14 @@
-import { FETCH_USERS } from '../actions/index';
+import { FETCH_USERS, FETCH_CURRENT_USER } from '../actions/index';
 
-const INITIAL_STATE = { all: [] };
+const INITIAL_STATE = { all: [], current: null };
 
 export default function UsersReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
     case FETCH_USERS:
-      console.log("users reducer: ", action.payload);
       return {...state, all: action.payload };
+    case FETCH_CURRENT_USER:
+      console.log("name: ", action.payload.data);
+      return {...state, current: action.payload.data }
     default:
       return state;
   }

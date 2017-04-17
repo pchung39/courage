@@ -11,6 +11,7 @@ export const FETCH_LONGEST = 'FETCH_LONGEST';
 export const FETCH_TOTAL_POINTS = 'FETCH_TOTAL_POINTS';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const FETCH_USERS = "FETCH_USERS";
+export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER";
 
 const ROOT_URL = 'http://localhost:3090/entries';
 const AUTH_ROOT_URL = "http://localhost:3090";
@@ -141,13 +142,23 @@ export function fetchSortedUsers() {
       };
 };
 
+export function fetchCurrentUser() {
+  const request = axios.get(`${USERS_ROOT_URL}/user`,
+  {
+    headers: { authorization: localStorage.getItem("token") }
+  });
+  return {
+    type: FETCH_CURRENT_USER,
+    payload: request
+  };
+}
+
 
 export function createEntry(props) {
   const request = axios.post(`${ROOT_URL}`, props,
     {
       headers: { authorization: localStorage.getItem("token") }
     });
-  console.log(props);
   return {
     type: CREATE_ENTRY,
     payload: request
@@ -177,11 +188,8 @@ export function signinUser({ email, password }) {
     // submit email/password to the server
     axios.post(`${AUTH_ROOT_URL}/signin`, { email, password })
       .then(response => {
-
-
           localStorage.setItem("token", response.data.token);
           dispatch({ type: AUTH_USER })
-
       })
       .catch(() => {
         // if request is bad
@@ -197,10 +205,8 @@ export function signupUser({ name, email, password }) {
     // submit email/password to the server
     axios.post(`${AUTH_ROOT_URL}/signup`, { name, email, password })
       .then(response => {
-
           localStorage.setItem("token", response.data.token);
           dispatch({ type: AUTH_USER })
-
       })
       .catch((response) => {
         // if request is bad
