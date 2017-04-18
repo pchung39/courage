@@ -157,7 +157,7 @@ export function fetchCurrentUser() {
 function determineTotalPoints(response) {
   var totalPoints = 0;
   var entries = response.data;
-  console.log(response.data);
+
   for (var pos = 0; pos <= entries.length - 1; pos++ ) {
     if (entries[pos].outcome === "rejected") {
       totalPoints = totalPoints + 10;
@@ -166,7 +166,7 @@ function determineTotalPoints(response) {
       totalPoints = totalPoints + 1;
     }
   }
-  console.log(totalPoints);
+
   return totalPoints;
 }
 
@@ -186,17 +186,6 @@ export function createEntry(props) {
 
 }
 
-/*
-export function createEntry(props) {
-  const request = axios.post(`${ROOT_URL}`, props,
-    {
-      headers: { authorization: localStorage.getItem("token") }
-    }).then( { dispatch({ type: CREATE_ENTRY, payload: request }); })
-      .then(() => setTotalPoints())
-      .then((points) => axios.post(`${USERS_ROOT_URL}/points`, points, { headers: { authorization: localStorage.getItem("token") } }))
-      .then((response) => { dispatch({ type: SET_TOTAL_POINTS, payload: response }) });
-};
-*/
 
 export function deleteEntry(id) {
   return (dispatch, getState) => {
@@ -207,9 +196,15 @@ export function deleteEntry(id) {
           .then(() => {
               dispatch(fetchEntries());
           })
+          .then(() => axios.get(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } }))
+          .then((entries) => determineTotalPoints(entries))
+          .then((points) => axios.post(`${USERS_ROOT_URL}/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
           .then(() => {
               dispatch(longestStreak());
-          });
+          })
+          .then(() => {
+            dispatch(fetchSortedUsers());
+          })
       };
 };
 
