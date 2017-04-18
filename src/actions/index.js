@@ -12,6 +12,7 @@ export const FETCH_TOTAL_POINTS = 'FETCH_TOTAL_POINTS';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER";
+export const SET_TOTAL_POINTS = "SET_TOTAL_POINTS";
 
 const ROOT_URL = 'http://localhost:3090/entries';
 const AUTH_ROOT_URL = "http://localhost:3090";
@@ -153,18 +154,49 @@ export function fetchCurrentUser() {
   };
 }
 
+function determineTotalPoints(response) {
+  var totalPoints = 0;
+  var entries = response.data;
+  console.log(response.data);
+  for (var pos = 0; pos <= entries.length - 1; pos++ ) {
+    if (entries[pos].outcome === "rejected") {
+      totalPoints = totalPoints + 10;
+    }
+    else {
+      totalPoints = totalPoints + 1;
+    }
+  }
+  console.log(totalPoints);
+  return totalPoints;
+}
 
+
+export function createEntry(props) {
+  return (dispatch, getState) => {
+      return axios.post(`${ROOT_URL}`, props,
+        {
+          headers: { authorization: localStorage.getItem("token") }
+        })
+        .then((response) => { dispatch({ type: CREATE_ENTRY, payload: response }); })
+          .then(() => axios.get(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } }))
+          .then((entries) => determineTotalPoints(entries))
+          .then((points) => axios.post(`${USERS_ROOT_URL}/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
+          .then((response) => { dispatch({ type: SET_TOTAL_POINTS, payload: response }) });
+      };
+
+}
+
+/*
 export function createEntry(props) {
   const request = axios.post(`${ROOT_URL}`, props,
     {
       headers: { authorization: localStorage.getItem("token") }
-    });
-  return {
-    type: CREATE_ENTRY,
-    payload: request
-  };
-}
-
+    }).then( { dispatch({ type: CREATE_ENTRY, payload: request }); })
+      .then(() => setTotalPoints())
+      .then((points) => axios.post(`${USERS_ROOT_URL}/points`, points, { headers: { authorization: localStorage.getItem("token") } }))
+      .then((response) => { dispatch({ type: SET_TOTAL_POINTS, payload: response }) });
+};
+*/
 
 export function deleteEntry(id) {
   return (dispatch, getState) => {
