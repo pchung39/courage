@@ -43,8 +43,14 @@ export const setVisibilityFilter = (filter) => {
 function findLongestStreak(entries) {
   var longestStreakLength = 0;
   var currentStreakLength = 0;
+
   for (var pos = 0; pos <= entries.length - 1; pos++) {
-    if (pos === entries.length - 1) {
+    if (entries.length === 1) {
+      if (entries[pos].outcome === "rejected") {
+        longestStreakLength++;
+      };
+    }
+    else if (pos === entries.length - 1) {
       if (currentStreakLength > longestStreakLength) {
         longestStreakLength = currentStreakLength;
       };
