@@ -45,7 +45,7 @@ class NewEntry extends Component {
 
   render() {
     const { handleSubmit, reset } = this.props;
-    var submitClass = this.state.complete ? "submit-enabled" : "submit-disabled";
+
     return(
       <div className="formContainer">
       <form className="entryForm" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>

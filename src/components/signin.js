@@ -9,6 +9,23 @@ class SignIn extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      email: "",
+      password: ""
+    }
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value= target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
 
@@ -49,14 +66,26 @@ class SignIn extends Component {
         <div className="inputDiv">
           <label className="emailLabel"><p>Email</p></label>
           <div>
-            <Field className="email" name="email" component="input" type="text" />
+            <Field
+              className="email"
+              name="email"
+              component="input"
+              type="text"
+              value={this.state.email}
+              onChange={this.handleInputChange} />
           </div>
         </div>
 
         <div className="inputDiv">
           <label className="passwordLabel"><p>Password</p></label>
           <div>
-            <Field className="password" name="password" component="input" type="password" />
+            <Field
+              className="password"
+              name="password"
+              component="input"
+              type="password"
+              value={this.state.password}
+              onChange={this.handleInputChange} />
           </div>
         </div>
 

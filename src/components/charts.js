@@ -24,7 +24,7 @@ const StreakChart = ({ entries }) => {
               <p id="yaxis-rejected">Rejected</p>
             </div>
             <div id="xaxis">
-              <LineChart width={700} height={300} data={streakData()}
+              <LineChart width={1000} height={300} data={streakData()}
                     margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                <XAxis hide="true" />
                <YAxis hide="true"/>

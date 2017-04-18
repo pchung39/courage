@@ -232,6 +232,7 @@ a {
 .graphContainer {
   display: flex;
   flex-direction: row;
+  flex-grow: 100;
   margin-top: 20px;
 }
 
