@@ -14,14 +14,13 @@ export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER";
 export const SET_TOTAL_POINTS = "SET_TOTAL_POINTS";
 
-const ROOT_URL = 'http://localhost:3090/entries';
-const AUTH_ROOT_URL = "http://localhost:3090";
-const USERS_ROOT_URL = "http://localhost:3090/users";
+const ROOT_URL = 'http://localhost:3090';
 
+/* ==== USER STATS ==== */
 
 export function longestStreak() {
   return (dispatch, getState) => {
-      return fetch(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } })
+      return fetch(`${ROOT_URL}/entries`, { headers: { authorization: localStorage.getItem("token") } })
           .then((response) => response.json())
           .then((response) => {
               dispatch(findLongestStreak(response));
@@ -39,6 +38,22 @@ export const setVisibilityFilter = (filter) => {
 
 
 
+function calculateTotalPoints(entries){
+  var totalPoints = 0;
+  for (var pos = 0; pos <= entries.length - 1; pos++ ) {
+    if (entries[pos].outcome === "rejected") {
+      totalPoints = totalPoints + 10;
+    }
+    else {
+      totalPoints = totalPoints + 1;
+    }
+  }
+
+  return {
+    type: FETCH_TOTAL_POINTS,
+    payload: totalPoints
+  };
+}
 
 function findLongestStreak(entries) {
   var longestStreakLength = 0;
@@ -72,26 +87,10 @@ function findLongestStreak(entries) {
   };
 }
 
-function calculateTotalPoints(entries){
-  var totalPoints = 0;
-  for (var pos = 0; pos <= entries.length - 1; pos++ ) {
-    if (entries[pos].outcome === "rejected") {
-      totalPoints = totalPoints + 10;
-    }
-    else {
-      totalPoints = totalPoints + 1;
-    }
-  }
-
-  return {
-    type: FETCH_TOTAL_POINTS,
-    payload: totalPoints
-  };
-}
-
+/* ==== FETCH ALL USERS'S ENTRIES ==== */
 
 export function fetchEntries() {
-  const request = axios.get(`${ROOT_URL}`,
+  const request = axios.get(`${ROOT_URL}/entries`,
     {
       headers: { authorization: localStorage.getItem("token") }
     });
@@ -101,15 +100,17 @@ export function fetchEntries() {
   };
 }
 
+/* ==== FETCH ALL USERS ==== */
+
 export function fetchUsers() {
-  const request = axios.get(`${USERS_ROOT_URL}`);
+  const request = axios.get(`${ROOT_URL}/users`);
   return {
     type: FETCH_USERS,
     payload: request
   };
 }
 
-/*  THUNK FUNCTION: SORT USERS FOR LEADERBOARD */
+/* ==== THUNK FUNCTION: SORT USERS FOR LEADERBOARD ==== */
 
 function quickSort(users) {
   if (users.length <= 1) {
@@ -134,10 +135,11 @@ function quickSort(users) {
     }
 }
 
+/* ==== FETCH USERS FOR LEADERBOARD ==== */
 
 export function fetchSortedUsers() {
   return (dispatch, getState) => {
-      return fetch(`${USERS_ROOT_URL}`)
+      return fetch(`${ROOT_URL}/users`)
           .then((response) => response.json())
           .then((response) => {
               var sortedList = quickSort(response);
@@ -149,8 +151,10 @@ export function fetchSortedUsers() {
       };
 };
 
+/* ==== FETCH CURRENT USER ==== */
+
 export function fetchCurrentUser() {
-  const request = axios.get(`${USERS_ROOT_URL}/user`,
+  const request = axios.get(`${ROOT_URL}/users/user`,
   {
     headers: { authorization: localStorage.getItem("token") }
   });
@@ -159,6 +163,10 @@ export function fetchCurrentUser() {
     payload: request
   };
 }
+
+
+/* ==== CREATE ENTRY ==== */
+
 
 function determineTotalPoints(response) {
   var totalPoints = 0;
@@ -176,26 +184,28 @@ function determineTotalPoints(response) {
   return totalPoints;
 }
 
-
+// this unique action creator makes both creates the post as well as recalculates the user's points
 export function createEntry(props) {
   return (dispatch, getState) => {
-      return axios.post(`${ROOT_URL}`, props,
+      return axios.post(`${ROOT_URL}/entries`, props,
         {
           headers: { authorization: localStorage.getItem("token") }
         })
         .then((response) => { dispatch({ type: CREATE_ENTRY, payload: response }); })
           .then(() => axios.get(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } }))
           .then((entries) => determineTotalPoints(entries))
-          .then((points) => axios.post(`${USERS_ROOT_URL}/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
+          .then((points) => axios.post(`${ROOT_URL}/users/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
           .then((response) => { dispatch({ type: SET_TOTAL_POINTS, payload: response }) });
       };
 
 }
 
 
+/* ==== DELETE ENTRY ==== */
+
 export function deleteEntry(id) {
   return (dispatch, getState) => {
-      return axios.delete(`${ROOT_URL}/${id}`,
+      return axios.delete(`${ROOT_URL}/entries/${id}`,
         {
           headers: { authorization: localStorage.getItem("token") }
         })
@@ -204,7 +214,7 @@ export function deleteEntry(id) {
           })
           .then(() => axios.get(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } }))
           .then((entries) => determineTotalPoints(entries))
-          .then((points) => axios.post(`${USERS_ROOT_URL}/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
+          .then((points) => axios.post(`${ROOT_URL}/users/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
           .then(() => {
               dispatch(longestStreak());
           })
@@ -214,12 +224,12 @@ export function deleteEntry(id) {
       };
 };
 
-
+/* ==== AUTHENTICATION SIGN IN  ==== */
 
 export function signinUser({ email, password }) {
   return function(dispatch) {
     // submit email/password to the server
-    axios.post(`${AUTH_ROOT_URL}/signin`, { email, password })
+    axios.post(`${ROOT_URL}/signin`, { email, password })
       .then(response => {
           localStorage.setItem("token", response.data.token);
           dispatch({ type: AUTH_USER })
@@ -233,10 +243,12 @@ export function signinUser({ email, password }) {
 
 }
 
+/* ==== AUTHENTICATION SIGN UP  ==== */
+
 export function signupUser({ name, email, password }) {
   return function(dispatch) {
     // submit email/password to the server
-    axios.post(`${AUTH_ROOT_URL}/signup`, { name, email, password })
+    axios.post(`${ROOT_URL}/signup`, { name, email, password })
       .then(response => {
           localStorage.setItem("token", response.data.token);
           dispatch({ type: AUTH_USER })
@@ -250,6 +262,8 @@ export function signupUser({ name, email, password }) {
 
 }
 
+/* ==== IF AUTHENTICATION ERROR ==== */
+
 export function authError(error) {
   return {
     type: AUTH_ERROR,
@@ -257,17 +271,9 @@ export function authError(error) {
   }
 }
 
+/* ==== SIGN OUT USER  ==== */
+
 export function signoutUser() {
   localStorage.removeItem("token");
   return { type: UNAUTH_USER };
-}
-
-// using JWT token for authenticated calls
-export function fetchMessage() {
-  return function(dispatch) {
-    axios.get(`${AUTH_ROOT_URL}/entries/test`, {
-      headers: { authorization: localStorage.getItem("token") }
-    })
-    .then(response => console.log(response));
-  }
 }
