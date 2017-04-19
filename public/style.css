@@ -40,6 +40,12 @@
   background-color: white;
 }
 
+.landingButton:hover, .landingSignUp:hover {
+  cursor: pointer;
+}
+
+
+
 #landingSignInButton {
   margin-top: 6px;
   margin-left: 4px;
@@ -74,9 +80,6 @@
   color: blue;
 }
 
-.fa-thumbs-up:hover, .fa-user-plus:hover {
-  color: red;
-}
 
 /* === MAIN PAGE === */
 

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import PostsReducer from './reducer_posts';
+import EntriesReducer from './reducer_entries';
 import StreakReducer from './reducer_streak';
 import PointsReducer from './reducer_points';
 import { reducer as formReducer } from 'redux-form';
@@ -8,7 +8,7 @@ import AuthReducer from "./reducer_auth";
 import UsersReducer from "./reducer_users";
 
 const rootReducer = combineReducers({
-  entries: PostsReducer,
+  entries: EntriesReducer,
   form: formReducer,
   streak: StreakReducer,
   points: PointsReducer,

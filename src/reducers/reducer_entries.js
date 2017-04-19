@@ -2,7 +2,7 @@ import { FETCH_ENTRIES, CREATE_ENTRY, DELETE_ENTRY } from '../actions/index';
 
 const INITIAL_STATE = { all: [] };
 
-export default function PostsReducer(state = INITIAL_STATE, action) {
+export default function EntriesReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
     case CREATE_ENTRY:
       return {...state, success: action.payload.data.success };

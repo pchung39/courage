@@ -192,7 +192,7 @@ export function createEntry(props) {
           headers: { authorization: localStorage.getItem("token") }
         })
         .then((response) => { dispatch({ type: CREATE_ENTRY, payload: response }); })
-          .then(() => axios.get(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } }))
+          .then(() => axios.get(`${ROOT_URL}/entries`, { headers: { authorization: localStorage.getItem("token") } }))
           .then((entries) => determineTotalPoints(entries))
           .then((points) => axios.post(`${ROOT_URL}/users/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
           .then((response) => { dispatch({ type: SET_TOTAL_POINTS, payload: response }) });
@@ -212,7 +212,7 @@ export function deleteEntry(id) {
           .then(() => {
               dispatch(fetchEntries());
           })
-          .then(() => axios.get(`${ROOT_URL}`, { headers: { authorization: localStorage.getItem("token") } }))
+          .then(() => axios.get(`${ROOT_URL}/entries`, { headers: { authorization: localStorage.getItem("token") } }))
           .then((entries) => determineTotalPoints(entries))
           .then((points) => axios.post(`${ROOT_URL}/users/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
           .then(() => {
