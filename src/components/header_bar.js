@@ -34,7 +34,7 @@ class AppBarHeader extends Component {
               <i className="fa fa-user-circle-o" aria-hidden="true"></i>
               <p className="userName">{this.props.currentUser}</p>
               <a href="/new"><i className="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i></a>
-              <i className="fa fa-sign-out fa-1x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i>
+              <a href="#"><i className="fa fa-sign-out fa-1x" aria-hidden="true" onClick={ this.signOut.bind(this) }></i></a>
             </div> }
         </header>
 

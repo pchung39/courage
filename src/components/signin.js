@@ -89,7 +89,7 @@ class SignIn extends Component {
           </div>
         </div>
 
-        <button type="submit" className="submitButton">Submit</button>
+        <a href="#"><button type="submit" className="submitButton">Submit</button></a>
         <button className="cancelButton"><Link to="/me">Cancel</Link></button>
       </form>
 

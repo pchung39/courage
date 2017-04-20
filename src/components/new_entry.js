@@ -101,6 +101,7 @@ class NewEntry extends Component {
       <label className="categoryLabel"><p>Category</p></label>
       <div>
         <Field
+          className="category"
           name="category"
           component="select"
           value={this.state.ask}

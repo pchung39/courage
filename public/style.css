@@ -571,9 +571,14 @@ a {
   padding: 5px 20px;
 }
 
-.outcome {
-  padding: 30px;
+.outcome, .category {
+  border: none;
+  outline: none;
+  width: 170px;
+  height: 30px;
 }
+
+
 
 .submitButton, .cancelButton {
   width: 170px;
