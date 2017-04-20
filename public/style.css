@@ -572,7 +572,10 @@ a {
 }
 
 .outcome, .category {
-  border: none;
+  border-style: solid;
+  border-color: lightgrey;
+  border-width: 1px;
+  background-color: white;
   outline: none;
   width: 170px;
   height: 30px;
