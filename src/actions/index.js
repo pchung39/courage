@@ -14,7 +14,7 @@ export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER";
 export const SET_TOTAL_POINTS = "SET_TOTAL_POINTS";
 
-const ROOT_URL = 'http://localhost:3090';
+const ROOT_URL = 'https://courage-server.herokuapp.com';
 
 /* ==== USER STATS ==== */
 
