@@ -113,6 +113,7 @@ export function fetchUsers() {
 /* ==== THUNK FUNCTION: SORT USERS FOR LEADERBOARD ==== */
 
 function quickSort(users) {
+
   if (users.length <= 1) {
     return users;
   } else {
@@ -142,7 +143,8 @@ export function fetchSortedUsers() {
       return fetch(`${ROOT_URL}/users`)
           .then((response) => response.json())
           .then((response) => {
-              var sortedList = quickSort(response);
+              var sortedList = quickSort(response.user);
+              console.log("sortedList: ", sortedList);
               dispatch({
                 type: FETCH_USERS,
                 payload: sortedList.reverse().slice(0,5)

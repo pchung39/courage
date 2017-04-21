@@ -1,5 +1,5 @@
 import React from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from "recharts";
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from "recharts";
 
 const StreakChart = ({ entries }) => {
 
@@ -24,13 +24,14 @@ const StreakChart = ({ entries }) => {
               <p id="yaxis-rejected">Rejected</p>
             </div>
             <div id="xaxis">
-              <LineChart width={1000} height={300} data={streakData()}
-                    margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-               <XAxis hide="true" />
-               <YAxis hide="true"/>
-               <CartesianGrid strokeDasharray="3 3"/>
-               <Line type="monotone" dataKey="outcome" stroke="#8884d8" activeDot={{r: 8}}/>
-              </LineChart>
+                <LineChart width={1000} height={300} data={streakData()}
+                      margin={{top: 50, right: 30, left: 20, bottom: 5}}>
+                 <XAxis hide="true" />
+                 <YAxis hide="true"/>
+                 <CartesianGrid strokeDasharray="3 3"/>
+                 <Line type="monotone" dataKey="outcome" stroke="#8884d8" activeDot={{r: 8}}/>
+                </LineChart>
+
               <div id="xaxisLabel">
                 <p>Entries</p>
               </div>

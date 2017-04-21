@@ -7,7 +7,6 @@ export default function UsersReducer(state = INITIAL_STATE, action) {
     case FETCH_USERS:
       return {...state, all: action.payload };
     case FETCH_CURRENT_USER:
-      console.log("name: ", action.payload.data);
       return {...state, current: action.payload.data }
     default:
       return state;
