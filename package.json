@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.15.3",
-    "bcrypt": "^1.0.2",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "material-ui": "^0.17.1",
@@ -16,7 +15,6 @@
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "react-router-redux": "^5.0.0-alpha.4",
-    "react-sparklines": "^1.6.0",
     "react-tap-event-plugin": "^2.0.1",
     "react-trend": "^1.2.3",
     "recharts": "^0.22.0",
