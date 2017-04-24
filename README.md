@@ -13,7 +13,7 @@ Courage's UI styling gives major props to: `flexbox`
 RESTful API's are created with the help of: `Node.js`, `Express.js`, and `MongoDB`  
 Authentication leverages: `Passport.js (local strategy)`
 
-The code for the back-end node.js portion of Courage is hosted in this repo: ![Courage-api](https://github.com/pchung39/courage-api)
+The code for the back-end node.js portion of Courage is hosted in this repo: https://github.com/pchung39/courage-api
 
 
 ## Phase 2
