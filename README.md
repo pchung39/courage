@@ -8,10 +8,10 @@ Courage is a unique journalling experience meant to fortify your ability to face
 
 ## Technology overview
 
-Courage's UI is built on: `React` and `Redux`.
-Courage's UI styling gives major props to: `flexbox`
-RESTful API's are created with the help of: `Node.js`, `Express.js`, and `MongoDB`  
-Authentication leverages: `Passport.js (local strategy)`
+* Courage's UI is built on: `React` and `Redux`.
+* Courage's UI styling gives major props to: `flexbox`
+* RESTful API's are created with the help of: `Node.js`, `Express.js`, and `MongoDB`  
+* Authentication leverages: `Passport.js (local strategy)`
 
 The code for the back-end node.js portion of Courage is hosted in this repo: https://github.com/pchung39/courage-api
 
