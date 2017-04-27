@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { reduxForm, Field, Form, reset } from "redux-form";
+import { reduxForm, Field } from "redux-form";
 import { Link, Redirect } from 'react-router-dom';
 import * as actions from "../actions";
 
@@ -45,7 +45,7 @@ class SignIn extends Component {
   }
 
   render() {
-    const { handleSubmit, reset } = this.props;
+    const { handleSubmit } = this.props;
 
     if(this.props.authStatus === true) {
           return (

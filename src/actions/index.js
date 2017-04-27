@@ -44,10 +44,10 @@ function calculateTotalPoints(entries){
   var totalPoints = 0;
   for (var pos = 0; pos <= entries.length - 1; pos++ ) {
     if (entries[pos].outcome === "rejected") {
-      totalPoints = totalPoints + 10;
+      totalPoints += 10;
     }
     else {
-      totalPoints = totalPoints + 1;
+      totalPoints += 1;
     }
   }
 
@@ -180,10 +180,10 @@ function determineTotalPoints(response) {
 
   for (var pos = 0; pos <= entries.length - 1; pos++ ) {
     if (entries[pos].outcome === "rejected") {
-      totalPoints = totalPoints + 10;
+      totalPoints += 10;
     }
     else {
-      totalPoints = totalPoints + 1;
+      totalPoints += 1;
     }
   }
 

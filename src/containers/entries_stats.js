@@ -5,9 +5,6 @@ import EntriesMetadata from "../components/entries_metadata";
 
 
 class EntriesStatsContanier extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentWillMount() {
     this.props.fetchLongest();

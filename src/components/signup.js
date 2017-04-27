@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import ReactDOM from "react-dom";
 import { reduxForm, Field } from "redux-form";
 import { Link, Redirect } from 'react-router-dom';
 import * as actions from "../actions";
@@ -38,7 +37,7 @@ class SignUp extends Component {
   render() {
     const { handleSubmit } = this.props;
 
-    if(this.props.authStatus == true) {
+    if(this.props.authStatus === true) {
           return (
             <Redirect to="/me"/>
           )

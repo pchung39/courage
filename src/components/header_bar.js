@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { signoutUser, fetchCurrentUser } from "../actions/index";
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
 class AppBarHeader extends Component {
-  constructor(props) {
-    super(props)
-  };
 
   componentWillMount() {
     this.props.fetchCurrentUser();

@@ -9,7 +9,7 @@ const EntriesMetadata = ({ points, streak }) => {
             <p id="userStatsTitle">Your Stats</p>
             <hr />
           </div>
-          { points == 0 ? ( <div className="noMetadata">No Data to Show</div> ) : (
+          { points === 0 ? ( <div className="noMetadata">No Data to Show</div> ) : (
             <div>
               <div className="streakText">
                 <i className="fa fa-bolt" aria-hidden="true"></i>

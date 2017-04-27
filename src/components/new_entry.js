@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
-import ReactDOM from "react-dom";
-import { bindActionCreators } from 'redux';
-import { reduxForm, Field, Form, reset } from "redux-form";
+import { reduxForm, Field, reset } from "redux-form";
 import { createEntry } from "../actions/index";
 import { Link } from 'react-router-dom';
 
@@ -44,7 +42,7 @@ class NewEntry extends Component {
   }
 
   render() {
-    const { handleSubmit, reset } = this.props;
+    const { handleSubmit } = this.props;
 
     return(
       <div className="formContainer">
