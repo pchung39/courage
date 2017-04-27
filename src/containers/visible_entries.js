@@ -11,6 +11,8 @@ const getVisibleEntries = (entries, filter) => {
       return entries.filter(e => e.category === "friends")
     case 'career':
       return entries.filter(e => e.category === "career")
+    default:
+      return entries;
   }
 }
 

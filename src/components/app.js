@@ -6,20 +6,12 @@ import AppBarHeader from "./header_bar";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import NewEntry from "./new_entry";
 import Landing from "./landing_page";
-import VisibilityFilter from "./visibility_filters";
 import SignUp from "./signup";
 import SignIn from "./signin";
 import LeaderboardContainer from "../containers/leaderboard_container";
 import ChartContainer from "../containers/chart_container";
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  authRedirect = (props) => {
-
-  }
 
   render() {
     return (

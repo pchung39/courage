@@ -5,9 +5,6 @@ import Leaderboard from "../components/leaderboard";
 
 
 class LeaderboardContainer extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentWillMount() {
     this.props.fetchSortedUsers();

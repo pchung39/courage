@@ -7,7 +7,7 @@ import promise from 'redux-promise';
 import App from './components/app';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers/index';
-import { AUTH_USER } from "./actions/index";
+import { AUTH_USER } from "./actions/types";
 
 const logger = createLogger();
 const middlewares = [thunk, promise, logger];

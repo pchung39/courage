@@ -1,4 +1,4 @@
-import { FETCH_TOTAL_POINTS, SET_TOTAL_POINTS } from '../actions/index';
+import { FETCH_TOTAL_POINTS, SET_TOTAL_POINTS } from '../actions/types';
 
 const INITIAL_STATE = { points: 0 , success: false };
 

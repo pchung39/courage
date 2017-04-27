@@ -5,9 +5,6 @@ import { fetchEntries } from "../actions/index";
 
 
 class ChartContainer extends Component {
-  constructor(props) {
-    super(props)
-  };
 
   componentWillMount() {
     this.props.fetchEntries();

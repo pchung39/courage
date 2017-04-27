@@ -1,6 +1,6 @@
 import React from 'react';
 import VisibilityFilter from "./visibility_filters";
-
+import { Link } from 'react-router-dom';
 
 const EntriesIndex = ({ entries, deleteEntry }) => {
 
@@ -68,8 +68,11 @@ const EntriesIndex = ({ entries, deleteEntry }) => {
               {renderApprovedEntries()}
             </ul>
         </div> :
-        <h1 className="noEntries">No Entries Found</h1> }
-
+          <div>
+            <h1 id="noEntries">No Entries Found</h1>
+            <h1 id="newEntryLink"><Link to="/new">Create one!</Link></h1>
+          </div>
+            }
       </div>
 
     );

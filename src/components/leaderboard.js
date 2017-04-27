@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Leaderboard = ({ users }) => {
-  let count = 0;
 
   let userPhotoGallery = {
     1 : <img className="userPhoto" src="http://pm1.narvii.com/6337/6f7cf6153494916fb8788431c81ce9938c453cc2_128.jpg" alt="k2-s0" />,
@@ -19,8 +18,8 @@ const Leaderboard = ({ users }) => {
   const renderList = (count) => {
     return users.map((user) => {
       return (
-          <div>
-            <li className="singleUser" key={user._id}>
+          <div key={user._id}>
+            <li className="singleUser">
               {selectUserPhoto()}
               <div className="leaderboardInfo">
                 <p id="userName">{user.name}</p>

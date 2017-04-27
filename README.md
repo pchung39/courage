@@ -4,6 +4,8 @@
 
 Courage is a unique journalling experience meant to fortify your ability to face rejection. Log every time you leave your comfort zone and boldly ask. Whether it's a date with a girl you liked for ages, or requesting a raise, or even an extra scoop of rice in your Chipotle burrito bowl. Keep track of it in Courage.
 
+Check out a demo of it here: http://buildcourage.herokuapp.com
+
 ![courage_screen](https://cloud.githubusercontent.com/assets/3104259/25321608/be0d07a8-2864-11e7-9427-f2d30a63327d.png)
 
 ## Technology overview

@@ -1,4 +1,4 @@
-import { FETCH_ENTRIES, CREATE_ENTRY, DELETE_ENTRY } from '../actions/index';
+import { FETCH_ENTRIES, CREATE_ENTRY, DELETE_ENTRY } from '../actions/types';
 
 const INITIAL_STATE = { all: [] };
 

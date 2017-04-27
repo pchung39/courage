@@ -303,11 +303,22 @@ a {
     box-shadow: 0 10px 50px rgba(0,0,0,.4);
 }
 
-.noEntries {
+#noEntries {
   display: flex;
   justify-content: center;
   margin-top: 100px;
+}
 
+#newEntryLink {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+  color: blue;
+}
+
+#newEntryLink:hover {
+  opacity: 0.60;
 }
 
 .cardContent {
@@ -625,7 +636,7 @@ a {
 
 /* ==== RESPONSIVE CONSIDERATIONS ==== */
 
-@media screen and (min-width: 481px) and (max-width: 960px) {
+@media only screen and (min-width: 481px) and (max-width: 960px) {
   .metadataContainer {
     display: flex;
     flex-direction: column;
@@ -634,4 +645,5 @@ a {
   .graphContainer {
     display: none;
   }
+
 }

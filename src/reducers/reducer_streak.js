@@ -1,4 +1,4 @@
-import { FETCH_LONGEST } from '../actions/index';
+import { FETCH_LONGEST } from '../actions/types';
 
 const INITIAL_STATE = { streak: 0 };
 

@@ -1,8 +1,4 @@
-import {
-  AUTH_USER,
-  UNAUTH_USER,
-  AUTH_ERROR
-} from "../actions/index";
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from "../actions/types";
 
 export default function AuthReducer(state = {}, action) {
   switch(action.type) {

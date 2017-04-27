@@ -1,4 +1,4 @@
-import { SET_VISIBILITY_FILTER } from '../actions/index';
+import { SET_VISIBILITY_FILTER } from '../actions/types';
 
 
 const VisibilityFilter = (state = 'all', action) => {

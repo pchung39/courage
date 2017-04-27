@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+import * as type from './types';
+/*
 export const AUTH_USER = "AUTH_USER";
 export const UNAUTH_USER = "UNAUTH_USER";
 export const AUTH_ERROR = "AUTH_ERROR";
@@ -13,6 +14,7 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER";
 export const SET_TOTAL_POINTS = "SET_TOTAL_POINTS";
+*/
 
 const ROOT_URL = 'https://courage-server.herokuapp.com';
 
@@ -31,12 +33,12 @@ export function longestStreak() {
 
 export const setVisibilityFilter = (filter) => {
   return {
-    type: SET_VISIBILITY_FILTER,
+    type: type.SET_VISIBILITY_FILTER,
     filter
   }
 };
 
-
+/* calculates user's total points which is returned in the user's stats section  */
 
 function calculateTotalPoints(entries){
   var totalPoints = 0;
@@ -50,10 +52,12 @@ function calculateTotalPoints(entries){
   }
 
   return {
-    type: FETCH_TOTAL_POINTS,
+    type: type.FETCH_TOTAL_POINTS,
     payload: totalPoints
   };
 }
+
+/* algorithm to find the longest streak of rejections  */
 
 function findLongestStreak(entries) {
   var longestStreakLength = 0;
@@ -82,7 +86,7 @@ function findLongestStreak(entries) {
     };
 
   return {
-    type: FETCH_LONGEST,
+    type: type.FETCH_LONGEST,
     payload: longestStreakLength
   };
 }
@@ -95,7 +99,7 @@ export function fetchEntries() {
       headers: { authorization: localStorage.getItem("token") }
     });
   return {
-    type: FETCH_ENTRIES,
+    type: type.FETCH_ENTRIES,
     payload: request
   };
 }
@@ -105,7 +109,7 @@ export function fetchEntries() {
 export function fetchUsers() {
   const request = axios.get(`${ROOT_URL}/users`);
   return {
-    type: FETCH_USERS,
+    type: type.FETCH_USERS,
     payload: request
   };
 }
@@ -143,10 +147,10 @@ export function fetchSortedUsers() {
       return fetch(`${ROOT_URL}/users`)
           .then((response) => response.json())
           .then((response) => {
-              var sortedList = quickSort(response.user);
+              var sortedList = quickSort(response.users);
               console.log("sortedList: ", sortedList);
               dispatch({
-                type: FETCH_USERS,
+                type: type.FETCH_USERS,
                 payload: sortedList.reverse().slice(0,5)
               });
           });
@@ -161,7 +165,7 @@ export function fetchCurrentUser() {
     headers: { authorization: localStorage.getItem("token") }
   });
   return {
-    type: FETCH_CURRENT_USER,
+    type: type.FETCH_CURRENT_USER,
     payload: request
   };
 }
@@ -193,11 +197,11 @@ export function createEntry(props) {
         {
           headers: { authorization: localStorage.getItem("token") }
         })
-        .then((response) => { dispatch({ type: CREATE_ENTRY, payload: response }); })
+        .then((response) => { dispatch({ type: type.CREATE_ENTRY, payload: response }); })
           .then(() => axios.get(`${ROOT_URL}/entries`, { headers: { authorization: localStorage.getItem("token") } }))
           .then((entries) => determineTotalPoints(entries))
           .then((points) => axios.post(`${ROOT_URL}/users/points`, { points : points }, { headers: { authorization: localStorage.getItem("token") } }) )
-          .then((response) => { dispatch({ type: SET_TOTAL_POINTS, payload: response }) });
+          .then((response) => { dispatch({ type: type.SET_TOTAL_POINTS, payload: response }) });
       };
 
 }
@@ -234,7 +238,7 @@ export function signinUser({ email, password }) {
     axios.post(`${ROOT_URL}/signin`, { email, password })
       .then(response => {
           localStorage.setItem("token", response.data.token);
-          dispatch({ type: AUTH_USER })
+          dispatch({ type: type.AUTH_USER })
       })
       .catch(() => {
         // if request is bad
@@ -253,7 +257,7 @@ export function signupUser({ name, email, password }) {
     axios.post(`${ROOT_URL}/signup`, { name, email, password })
       .then(response => {
           localStorage.setItem("token", response.data.token);
-          dispatch({ type: AUTH_USER })
+          dispatch({ type: type.AUTH_USER })
       })
       .catch((response) => {
         // if request is bad
@@ -268,7 +272,7 @@ export function signupUser({ name, email, password }) {
 
 export function authError(error) {
   return {
-    type: AUTH_ERROR,
+    type: type.AUTH_ERROR,
     payload: error
   }
 }
@@ -277,5 +281,5 @@ export function authError(error) {
 
 export function signoutUser() {
   localStorage.removeItem("token");
-  return { type: UNAUTH_USER };
+  return { type: type.UNAUTH_USER };
 }

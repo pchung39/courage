@@ -47,7 +47,7 @@ class SignIn extends Component {
   render() {
     const { handleSubmit, reset } = this.props;
 
-    if(this.props.authStatus == true) {
+    if(this.props.authStatus === true) {
           return (
             <Redirect to="/me"/>
           )
@@ -89,7 +89,7 @@ class SignIn extends Component {
           </div>
         </div>
 
-        <a href="#"><button type="submit" className="submitButton">Submit</button></a>
+        <button type="submit" className="submitButton">Submit</button>
         <button className="cancelButton"><Link to="/me">Cancel</Link></button>
       </form>
 

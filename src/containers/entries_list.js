@@ -7,10 +7,6 @@ import EntriesIndex from "../components/entries_index";
 
 class EntriesContainer extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   componentWillMount() {
     this.props.fetchEntries();
   }
