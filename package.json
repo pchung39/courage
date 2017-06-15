@@ -1,6 +1,7 @@
 {
   "name": "courage_test",
   "version": "0.1.0",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "axios": "^0.15.3",
@@ -9,7 +10,6 @@
     "material-ui": "^0.17.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-facebook-login": "^3.5.0",
     "react-fontawesome": "^1.5.0",
     "react-redux": "^5.0.3",
     "react-router": "^4.0.0",
@@ -28,9 +28,8 @@
     "react-scripts": "0.9.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p"
   }
 }
