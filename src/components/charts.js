@@ -20,8 +20,8 @@ const StreakChart = ({ entries }) => {
     return (
           <div className="graphContainer">
             <div id="yaxis">
+              <p id="yaxis-rejected">Rejected</p>            
               <p id="yaxis-accepted">Accepted</p>
-              <p id="yaxis-rejected">Rejected</p>
             </div>
             <div id="xaxis">
                 <LineChart width={1000} height={300} data={streakData()}
