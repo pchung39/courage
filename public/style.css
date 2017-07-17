@@ -260,12 +260,12 @@ a {
 }
 
 #yaxis-rejected {
-  margin-bottom: 70px;
+  margin-top: 35px;
   color: grey;
 }
 
 #yaxis-accepted {
-  margin-top: 35px;
+  margin-bottom: 70px;
   color: grey;
 }
 
