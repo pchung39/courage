@@ -21,7 +21,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  background-color: red;
+  background-color: #F64653;
   width: 40%;
   height: 10%;
 }
@@ -38,7 +38,7 @@
   padding-left: 12px;
   padding-right: 10px;
   padding-bottom: 3px;
-  background-color: red;
+  background-color: #F64653;
 }
 
 .landingButton:hover, .landingSignUp:hover {
@@ -55,7 +55,7 @@
   border: none;
   color: white;
   padding: 4px;
-  background-color: red;
+  background-color: #F64653;
 }
 
 #landingSignUpButton {
@@ -65,7 +65,7 @@
   border: none;
   color: white;
   padding: 4px;
-  background-color: red;
+  background-color: #F64653;
 }
 
 .landingSignUp {
@@ -76,7 +76,7 @@
   padding-left: 12px;
   padding-right: 10px;
   padding-bottom: 3px;
-  background-color: red;
+  background-color: #F64653;
 }
 
 .fa-thumbs-up, .fa-user-plus {
